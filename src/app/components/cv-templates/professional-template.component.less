@@ -1,28 +1,32 @@
 .professional-cv {
-  max-width: 210mm;
+  width: 210mm;
   min-height: 297mm;
   margin: 0 auto;
   background: white;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+  font-size: 11px;
+  page-break-inside: avoid;
 }
 
 .cv-header {
   background: #1e3a8a;
   color: white;
-  padding: 40px;
+  padding: 20px 30px;
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
+  flex-shrink: 0;
 
   .header-left {
     .photo-container {
       .profile-photo {
-        width: 120px;
-        height: 120px;
+        width: 80px;
+        height: 80px;
         border-radius: 8px;
         object-fit: cover;
-        border: 4px solid rgba(255, 255, 255, 0.2);
+        border: 3px solid rgba(255, 255, 255, 0.2);
       }
     }
   }
@@ -31,15 +35,15 @@
     flex: 1;
 
     h1 {
-      font-size: 2.5em;
-      margin: 0 0 8px 0;
+      font-size: 2em;
+      margin: 0 0 5px 0;
       font-weight: 600;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
     }
 
     h2 {
-      font-size: 1.3em;
-      margin: 0 0 25px 0;
+      font-size: 1.2em;
+      margin: 0 0 10px 0;
       opacity: 0.9;
       font-weight: 400;
     }
@@ -69,7 +73,7 @@
 }
 
 .cv-body {
-  padding: 40px;
+  padding: 20px 25px;
 }
 
 .summary-section {
@@ -98,12 +102,12 @@
 .content-columns {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 40px;
+  gap: 25px;
 }
 
 .main-column {
   section {
-    margin-bottom: 35px;
+    margin-bottom: 18px;
 
     h3 {
       color: #1e3a8a;
@@ -118,8 +122,8 @@
   }
 
   .experience-item, .education-item {
-    margin-bottom: 25px;
-    padding: 20px;
+    margin-bottom: 12px;
+    padding: 15px;
     background: #f9fafb;
     border-radius: 8px;
     border-left: 4px solid #3b82f6;
@@ -161,8 +165,8 @@
 
 .side-column {
   section {
-    margin-bottom: 30px;
-    padding: 20px;
+    margin-bottom: 18px;
+    padding: 15px;
     background: #f1f5f9;
     border-radius: 8px;
 
@@ -212,5 +216,13 @@
         font-weight: 500;
       }
     }
+  }
+}
+
+
+@media print {
+  .professional-cv {
+    box-shadow: none;
+    page-break-after: always;
   }
 }

@@ -1,36 +1,38 @@
 .minimal-cv {
   width: 210mm;
-  height: 297mm;
+  min-height: 297mm;
   margin: 0 auto;
   background: white;
-  padding: 50px;
+  padding: 25px 30px;
   font-family: 'Georgia', serif;
-  line-height: 1.7;
+  line-height: 1.5;
   color: #2c3e50;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
   box-sizing: border-box;
+  font-size: 11px;
+  page-break-inside: avoid;
 }
 
 .cv-header {
   text-align: center;
-  margin-bottom: 50px;
-  padding-bottom: 30px;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
   border-bottom: 2px solid #34495e;
+  flex-shrink: 0;
 
   h1 {
-    font-size: 2.8em;
-    margin: 0 0 12px 0;
+    font-size: 2em;
+    margin: 0 0 8px 0;
     font-weight: 300;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     color: #2c3e50;
     text-transform: uppercase;
   }
 
   .subtitle {
-    font-size: 1.3em;
+    font-size: 1.2em;
     color: #7f8c8d;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-style: italic;
     font-weight: 300;
   }
@@ -44,11 +46,11 @@
 
 .cv-main {
   .section {
-    margin-bottom: 45px;
+    margin-bottom: 20px;
 
     h2 {
-      font-size: 1.4em;
-      margin: 0 0 25px 0;
+      font-size: 1.2em;
+      margin: 0 0 12px 0;
       font-weight: 400;
       text-transform: uppercase;
       letter-spacing: 3px;
@@ -76,8 +78,8 @@
   }
 
   .item {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
     border-bottom: 1px solid #ecf0f1;
 
     &:last-child {
@@ -123,8 +125,8 @@
   .bottom-sections {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-top: 40px;
+    gap: 25px;
+    margin-top: 20px;
 
     .section {
       margin-bottom: 0;
@@ -149,124 +151,9 @@
   }
 }
 
-// Print styles
 @media print {
   .minimal-cv {
     box-shadow: none;
-    margin: 0;
-    padding: 40px;
-  }
-}
-
-// Responsive
-@media (max-width: 600px) {
-  .minimal-cv {
-    padding: 30px 20px;
-  }
-
-  .cv-header h1 {
-    font-size: 2.2em;
-    letter-spacing: 2px;
-  }
-
-  .item-header {
-    flex-direction: column;
-    align-items: flex-start !important;
-
-    .period {
-      margin-top: 4px;
-    }
-  }
-
-  .bottom-sections {
-    grid-template-columns: 1fr;
-    gap: 25px;
-  }
-}
-
-/* PDF Generation Responsive */
-.pdf-generating .minimal-cv {
-  width: 210mm !important;
-  min-height: 297mm !important;
-  font-size: 12px !important;
-  padding: 15mm !important;
-  
-  .cv-header {
-    margin-bottom: 15mm !important;
-    padding-bottom: 10mm !important;
-    
-    h1 {
-      font-size: 24px !important;
-    }
-    
-    .subtitle {
-      font-size: 16px !important;
-    }
-    
-    .contact-line {
-      font-size: 11px !important;
-    }
-  }
-  
-  .section {
-    margin-bottom: 15mm !important;
-    
-    h2 {
-      font-size: 16px !important;
-      margin-bottom: 8mm !important;
-    }
-    
-    p {
-      font-size: 11px !important;
-    }
-  }
-  
-  .item {
-    margin-bottom: 10mm !important;
-    padding-bottom: 8mm !important;
-    
-    .item-header .title {
-      font-size: 13px !important;
-    }
-    
-    .item-header .period {
-      font-size: 10px !important;
-    }
-    
-    .subtitle {
-      font-size: 12px !important;
-    }
-    
-    .description {
-      font-size: 11px !important;
-    }
-  }
-  
-  .bottom-sections {
-    gap: 15mm !important;
-    margin-top: 15mm !important;
-    
-    .skills-text, .languages-text {
-      font-size: 11px !important;
-    }
-  }
-}
-
-/* Mobile Responsive - Only Scale for Visibility */
-@media (max-width: 768px) {
-  .minimal-cv {
-    transform: scale(0.7);
-    transform-origin: top left;
-    width: 142.86%; /* 100% / 0.7 */
-    margin: 0 !important;
-    box-shadow: none !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .minimal-cv {
-    transform: scale(0.5);
-    transform-origin: top left;
-    width: 200%; /* 100% / 0.5 */
+    page-break-after: always;
   }
 }

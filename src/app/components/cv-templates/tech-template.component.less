@@ -1,17 +1,21 @@
 .tech-cv {
-  max-width: 210mm;
+  width: 210mm;
   min-height: 297mm;
   margin: 0 auto;
   background: #0d1117;
   color: #c9d1d9;
   font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  font-size: 11px;
+  page-break-inside: avoid;
 }
 
 .cv-header {
-  padding: 30px;
+  padding: 20px 25px;
   background: #161b22;
   border-bottom: 1px solid #30363d;
+  flex-shrink: 0;
 }
 
 .terminal-window {
@@ -75,14 +79,14 @@
 }
 
 .cv-body {
-  padding: 30px;
+  padding: 20px 25px;
 }
 
 .code-section {
   background: #0d1117;
   border: 1px solid #30363d;
   border-radius: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   overflow: hidden;
 
   .code-header {
@@ -121,7 +125,7 @@
 .content-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 15px;
 }
 
 .json-structure, .experience-code, .education-code {
@@ -180,17 +184,9 @@
   }
 }
 
-// Responsive
-@media (max-width: 768px) {
-  .content-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .terminal-content {
-    font-size: 0.85em;
-  }
-  
-  .code-content {
-    font-size: 0.8em;
+@media print {
+  .tech-cv {
+    box-shadow: none;
+    page-break-after: always;
   }
 }

@@ -1,13 +1,14 @@
 .creative-cv {
   width: 210mm;
-  height: 297mm;
+  min-height: 297mm;
   margin: 0 auto;
   background: white;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: relative;
-  overflow: hidden;
   box-sizing: border-box;
+  font-size: 11px;
+  page-break-inside: avoid;
 
   &::before {
     content: '';
@@ -23,8 +24,9 @@
 .cv-header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 40px;
+  padding: 20px 30px;
   margin-top: 8px;
+  flex-shrink: 0;
 
   .header-content {
     display: flex;
@@ -33,11 +35,11 @@
     
     .photo-section {
       .profile-photo {
-        width: 120px;
-        height: 120px;
+        width: 80px;
+        height: 80px;
         border-radius: 50%;
         object-fit: cover;
-        border: 4px solid rgba(255, 255, 255, 0.3);
+        border: 3px solid rgba(255, 255, 255, 0.3);
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
       }
     }
@@ -48,19 +50,19 @@
       margin-bottom: 25px;
 
       h1 {
-        font-size: 2.8em;
-        margin: 0 0 15px 0;
+        font-size: 2em;
+        margin: 0 0 10px 0;
         font-weight: 300;
-        letter-spacing: 2px;
+        letter-spacing: 1px;
       }
 
       .title-badge {
         display: inline-block;
         background: rgba(255, 255, 255, 0.2);
         color: white;
-        padding: 10px 25px;
-        border-radius: 30px;
-        font-size: 1.2em;
+        padding: 6px 15px;
+        border-radius: 20px;
+        font-size: 1.1em;
         font-weight: 400;
         border: 2px solid rgba(255, 255, 255, 0.3);
       }
@@ -89,7 +91,7 @@
 }
 
 .cv-content {
-  padding: 40px;
+  padding: 20px 25px;
 }
 
 .section-header {
@@ -124,7 +126,7 @@
 .content-grid {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 40px;
+  gap: 25px;
 }
 
 .skills-container {
@@ -202,7 +204,7 @@
 
   .timeline-item {
     position: relative;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 
     .timeline-marker {
       position: absolute;
@@ -284,83 +286,9 @@
   }
 }
 
-/* PDF Generation Responsive */
-.pdf-generating .creative-cv {
-  width: 210mm !important;
-  min-height: 297mm !important;
-  font-size: 12px !important;
-  
-  .cv-header {
-    padding: 15mm !important;
-    
-    .profile-photo {
-      width: 80px !important;
-      height: 80px !important;
-    }
-    
-    .name-section h1 {
-      font-size: 24px !important;
-    }
-    
-    .title-badge {
-      font-size: 14px !important;
-      padding: 6px 15px !important;
-    }
-    
-    .contact-item {
-      font-size: 11px !important;
-    }
-  }
-  
-  .cv-content {
-    padding: 10mm !important;
-  }
-  
-  .content-grid {
-    gap: 15mm !important;
-  }
-  
-  .section-header h2 {
-    font-size: 16px !important;
-  }
-  
-  .skill-bubble {
-    font-size: 10px !important;
-    padding: 6px 10px !important;
-  }
-  
-  .timeline-item {
-    margin-bottom: 15px !important;
-    
-    .timeline-content {
-      padding: 12px !important;
-      
-      .job-title {
-        font-size: 13px !important;
-      }
-      
-      .job-description {
-        font-size: 11px !important;
-      }
-    }
-  }
-}
-
-/* Mobile Responsive - Only Scale for Visibility */
-@media (max-width: 768px) {
+@media print {
   .creative-cv {
-    transform: scale(0.7);
-    transform-origin: top left;
-    width: 142.86%; /* 100% / 0.7 */
-    margin: 0 !important;
-    box-shadow: none !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .creative-cv {
-    transform: scale(0.5);
-    transform-origin: top left;
-    width: 200%; /* 100% / 0.5 */
+    box-shadow: none;
+    page-break-after: always;
   }
 }

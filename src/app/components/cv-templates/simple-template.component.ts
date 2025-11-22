@@ -64,26 +64,29 @@ import { CVData } from '../../models/cv-template.model';
       background: white;
       font-family: Arial, sans-serif;
       color: #333;
-      padding: 20mm;
+      padding: 20px 25px;
       box-sizing: border-box;
-      line-height: 1.5;
+      line-height: 1.4;
+      font-size: 11px;
+      page-break-inside: avoid;
     }
 
     .header {
       text-align: center;
-      margin-bottom: 30px;
-      padding-bottom: 20px;
+      margin-bottom: 18px;
+      padding-bottom: 15px;
       border-bottom: 1px solid #ddd;
+      flex-shrink: 0;
     }
 
     .header h1 {
-      font-size: 28px;
+      font-size: 2em;
       margin: 0 0 5px 0;
       color: #333;
     }
 
     .header h2 {
-      font-size: 16px;
+      font-size: 1.2em;
       margin: 0 0 10px 0;
       color: #666;
       font-weight: normal;
@@ -95,11 +98,11 @@ import { CVData } from '../../models/cv-template.model';
     }
 
     section {
-      margin-bottom: 25px;
+      margin-bottom: 18px;
     }
 
     h3 {
-      font-size: 16px;
+      font-size: 1.1em;
       color: #333;
       margin-bottom: 10px;
       text-transform: uppercase;
@@ -107,7 +110,7 @@ import { CVData } from '../../models/cv-template.model';
     }
 
     .item {
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
 
     .item-header {
