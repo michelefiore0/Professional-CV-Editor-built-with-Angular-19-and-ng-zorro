@@ -1,12 +1,15 @@
 .modern-cv {
   width: 210mm;
   height: 297mm;
+  max-height: 297mm;
   margin: 0 auto;
   background: white;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow: hidden;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 .cv-header {
@@ -61,7 +64,8 @@
 
 .cv-content {
   display: flex;
-  min-height: calc(297mm - 200px);
+  flex: 1;
+  overflow: hidden;
 }
 
 .left-column {
