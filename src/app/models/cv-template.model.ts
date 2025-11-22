@@ -39,4 +39,5 @@ export interface CVTemplate {
   preview: string;
   category: 'modern' | 'classic' | 'creative' | 'minimal';
   hasPhoto: boolean;
+  disabled?: boolean;
 }

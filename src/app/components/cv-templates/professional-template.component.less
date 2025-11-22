@@ -1,13 +1,15 @@
 .professional-template {
-  width: 210mm;
-  height: 297mm;
+  width: 100%;
+  max-width: 900px;
+  min-height: 100vh;
   background: white;
   font-family: 'Arial', sans-serif;
   color: #333;
   padding: 15mm 18mm;
   box-sizing: border-box;
-  font-size: 11px;
-  overflow: hidden;
+  font-size: 12px;
+  overflow: visible;
+  margin: 0 auto;
 }
 
 .header {
@@ -139,6 +141,11 @@ h3 {
 
 @media print {
   .professional-template {
+    width: 210mm;
+    height: 297mm;
+    max-width: 210mm;
+    min-height: 297mm;
+    overflow: hidden;
     box-shadow: none;
     page-break-after: always;
   }

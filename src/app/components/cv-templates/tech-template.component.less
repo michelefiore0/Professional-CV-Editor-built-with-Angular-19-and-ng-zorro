@@ -1,18 +1,19 @@
 .tech-cv {
-  width: 210mm;
-  min-height: 297mm;
+  width: 100%;
+  max-width: 900px;
+  min-height: 100vh;
   margin: 0 auto;
   background: #0d1117;
   color: #c9d1d9;
   font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
-  font-size: 11px;
-  page-break-inside: avoid;
+  font-size: 12px;
+  overflow: visible;
 }
 
 .cv-header {
-  padding: 20px 25px;
+  padding: 15px 20px;
   background: #161b22;
   border-bottom: 1px solid #30363d;
   flex-shrink: 0;
@@ -54,11 +55,11 @@
   }
 
   .terminal-content {
-    padding: 20px;
-    font-size: 0.95em;
+    padding: 15px;
+    font-size: 0.9em;
 
     .terminal-line {
-      margin-bottom: 8px;
+      margin-bottom: 6px;
 
       .prompt {
         color: #7c3aed;
@@ -72,52 +73,52 @@
 
     .output {
       color: #f0f6fc;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       margin-left: 16px;
     }
   }
 }
 
 .cv-body {
-  padding: 20px 25px;
+  padding: 15px 20px;
 }
 
 .code-section {
   background: #0d1117;
   border: 1px solid #30363d;
   border-radius: 8px;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   overflow: hidden;
 
   .code-header {
     background: #21262d;
-    padding: 12px 16px;
+    padding: 10px 14px;
     border-bottom: 1px solid #30363d;
     display: flex;
     align-items: center;
 
     .code-lang {
       color: #f0f6fc;
-      font-size: 0.9em;
+      font-size: 0.85em;
       font-weight: 500;
     }
   }
 
   .code-content {
-    padding: 20px;
-    font-size: 0.9em;
-    line-height: 1.6;
+    padding: 15px;
+    font-size: 0.85em;
+    line-height: 1.5;
 
     h2 {
       color: #7c3aed;
-      margin: 0 0 15px 0;
-      font-size: 1.2em;
+      margin: 0 0 12px 0;
+      font-size: 1.1em;
     }
 
     p {
       color: #c9d1d9;
       margin: 0;
-      line-height: 1.7;
+      line-height: 1.6;
     }
   }
 }
@@ -125,19 +126,19 @@
 .content-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
+  gap: 12px;
 }
 
 .json-structure, .experience-code, .education-code {
   .json-line, .code-line {
-    margin-bottom: 4px;
+    margin-bottom: 3px;
     
     &.indent {
-      margin-left: 20px;
+      margin-left: 16px;
     }
     
     &.indent2 {
-      margin-left: 40px;
+      margin-left: 32px;
     }
   }
 }
@@ -154,7 +155,7 @@
 }
 
 .exp-item, .edu-item {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   
   .code-line {
     &.indent {
@@ -186,6 +187,10 @@
 
 @media print {
   .tech-cv {
+    width: 210mm;
+    min-height: 297mm;
+    max-width: 210mm;
+    overflow: hidden;
     box-shadow: none;
     page-break-after: always;
   }

@@ -1,37 +1,52 @@
 .executive-template {
-  width: 210mm;
-  height: 297mm;
+  width: 100%;
+  max-width: 900px;
+  min-height: 100vh;
   background: white;
   font-family: 'Times New Roman', serif;
   color: #2c3e50;
   padding: 20px 25px;
   box-sizing: border-box;
   line-height: 1.4;
-  font-size: 10px;
-  overflow: hidden;
+  font-size: 13px;
+  overflow: visible;
+  margin: 0 auto;
 }
 
 .header-section {
   text-align: center;
   padding-bottom: 15px;
-  border-bottom: 2px solid #34495e;
+  border-bottom: 3px solid #2c3e50;
   margin-bottom: 15px;
   flex-shrink: 0;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: #c0392b;
+  }
 }
 
 .name-title h1 {
-  font-size: 1.8em;
+  font-size: 2em;
   font-weight: bold;
   color: #2c3e50;
-  margin: 0 0 3px 0;
-  letter-spacing: 0.3px;
+  margin: 0 0 5px 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .name-title h2 {
-  font-size: 1.1em;
-  color: #7f8c8d;
-  margin: 0 0 8px 0;
-  font-weight: normal;
+  font-size: 1.2em;
+  color: #c0392b;
+  margin: 0 0 10px 0;
+  font-weight: 500;
   font-style: italic;
 }
 
@@ -82,13 +97,14 @@ section {
 }
 
 h3 {
-  font-size: 1em;
+  font-size: 1.05em;
   color: #2c3e50;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.3px;
-  border-bottom: 1px solid #bdc3c7;
-  padding-bottom: 2px;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #c0392b;
+  padding-bottom: 4px;
+  font-weight: bold;
 }
 
 .experience-entry {
@@ -104,21 +120,22 @@ h3 {
 }
 
 .position-header h4 {
-  font-size: 0.95em;
+  font-size: 1em;
   color: #2c3e50;
   margin: 0;
   font-weight: bold;
 }
 
 .period {
-  font-size: 0.8em;
-  color: #7f8c8d;
+  font-size: 0.85em;
+  color: #c0392b;
   font-style: italic;
+  font-weight: 500;
 }
 
 .company-name {
-  font-size: 0.9em;
-  color: #34495e;
+  font-size: 0.95em;
+  color: #c0392b;
   font-weight: bold;
   margin-bottom: 4px;
 }
@@ -135,14 +152,15 @@ h3 {
 }
 
 .education-entry h4 {
-  font-size: 0.9em;
+  font-size: 0.95em;
   color: #2c3e50;
   margin: 0 0 2px 0;
+  font-weight: bold;
 }
 
 .institution {
-  font-size: 0.85em;
-  color: #34495e;
+  font-size: 0.9em;
+  color: #c0392b;
   font-weight: bold;
 }
 
@@ -187,6 +205,11 @@ h3 {
 
 @media print {
   .executive-template {
+    width: 210mm;
+    height: 297mm;
+    max-width: 210mm;
+    min-height: 297mm;
+    overflow: hidden;
     box-shadow: none;
     page-break-after: always;
   }

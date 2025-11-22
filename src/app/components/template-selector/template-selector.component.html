@@ -6,10 +6,11 @@
     <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8" [nzLg]="6" *ngFor="let template of templates">
       <nz-card 
         class="template-card"
+        [class.disabled-card]="template.disabled"
         [nzCover]="coverTemplate"
-        [nzActions]="[actionPreview]"
-        nzHoverable
-        (click)="previewTemplate(template)">
+        [nzActions]="template.disabled ? [] : [actionPreview]"
+        [nzHoverable]="!template.disabled"
+        (click)="!template.disabled && previewTemplate(template)">
         
         <ng-template #coverTemplate>
           <div class="template-preview">
@@ -37,13 +38,16 @@
         </nz-card-meta>
         
         <div class="template-category">
-          <nz-tag [nzColor]="getCategoryColor(template.category)">
+          <nz-tag *ngIf="template.disabled" nzColor="gold">
+            🚧 Coming Soon
+          </nz-tag>
+          <nz-tag *ngIf="!template.disabled" [nzColor]="getCategoryColor(template.category)">
             {{ template.category }}
           </nz-tag>
-          <nz-tag *ngIf="template.hasPhoto" nzColor="green">
+          <nz-tag *ngIf="!template.disabled && template.hasPhoto" nzColor="green">
             Con Foto
           </nz-tag>
-          <nz-tag *ngIf="!template.hasPhoto" nzColor="orange">
+          <nz-tag *ngIf="!template.disabled && !template.hasPhoto" nzColor="orange">
             Senza Foto
           </nz-tag>
         </div>

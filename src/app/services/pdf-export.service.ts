@@ -16,8 +16,10 @@ export class PdfExportService {
         throw new Error('Elemento non trovato');
       }
 
-      // Trova il template CV
-      const cvTemplate = originalElement.querySelector('[class*="-cv"]') as HTMLElement;
+      // Trova il template CV (cerca vari selettori)
+      const cvTemplate = originalElement.querySelector(
+        '[class*="-cv"], [class*="-template"], [class*="template"]'
+      ) as HTMLElement;
       if (!cvTemplate) {
         throw new Error('Template CV non trovato');
       }
@@ -85,8 +87,10 @@ export class PdfExportService {
       // Attendi caricamento completo
       await new Promise(resolve => setTimeout(resolve, 500));
 
-      // Trova il template nel iframe
-      const iframeCV = iframeDoc.querySelector('[class*="-cv"]') as HTMLElement;
+      // Trova il template nel iframe (cerca vari selettori)
+      const iframeCV = iframeDoc.querySelector(
+        '[class*="-cv"], [class*="-template"], [class*="template"]'
+      ) as HTMLElement;
       if (iframeCV) {
         iframeCV.style.width = '794px';
         iframeCV.style.height = '1123px';

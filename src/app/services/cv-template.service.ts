@@ -25,11 +25,12 @@ export class CVTemplateService {
     },
     {
       id: 'creative-1',
-      name: 'Creativo con Foto',
-      description: 'Design colorato e dinamico con foto',
+      name: '🚧 Coming Soon',
+      description: 'Nuovo template in arrivo...',
       preview: 'assets/previews/creative-1.png',
       category: 'creative',
-      hasPhoto: true
+      hasPhoto: true,
+      disabled: true
     },
     {
       id: 'minimal-1',

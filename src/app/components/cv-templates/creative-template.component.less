@@ -1,6 +1,7 @@
 .creative-cv {
-  width: 210mm;
-  height: 297mm;
+  width: 100%;
+  max-width: 900px;
+  min-height: 100vh;
   margin: 0 auto;
   background: white;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -9,8 +10,8 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  font-size: 10px;
-  overflow: hidden;
+  font-size: 12px;
+  overflow: visible;
 
   &::before {
     content: '';
@@ -307,6 +308,11 @@
 
 @media print {
   .creative-cv {
+    width: 210mm;
+    height: 297mm;
+    max-width: 210mm;
+    min-height: 297mm;
+    overflow: hidden;
     box-shadow: none;
     page-break-after: always;
   }

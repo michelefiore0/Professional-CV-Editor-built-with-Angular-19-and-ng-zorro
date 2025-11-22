@@ -1,6 +1,7 @@
 .minimal-cv {
-  width: 210mm;
-  min-height: 297mm;
+  width: 100%;
+  max-width: 900px;
+  min-height: 100vh;
   margin: 0 auto;
   background: white;
   padding: 25px 30px;
@@ -9,8 +10,8 @@
   color: #2c3e50;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  font-size: 11px;
-  page-break-inside: avoid;
+  font-size: 10px;
+  overflow: visible;
 }
 
 .cv-header {
@@ -153,6 +154,10 @@
 
 @media print {
   .minimal-cv {
+    width: 210mm;
+    min-height: 297mm;
+    max-width: 210mm;
+    overflow: hidden;
     box-shadow: none;
     page-break-after: always;
   }
