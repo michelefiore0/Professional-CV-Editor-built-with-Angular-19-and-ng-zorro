@@ -14,36 +14,57 @@ export class PdfExportService {
         throw new Error('Elemento non trovato');
       }
 
-      // Configurazione per alta qualità
+      // Rileva se siamo su mobile
+      const isMobile = window.innerWidth <= 768;
+      
+      // Aggiungi classe per PDF generation
+      document.body.classList.add('pdf-generating');
+      
+      // Attendi che i CSS si applichino
+      await new Promise(resolve => setTimeout(resolve, 100));
+
+      // Configurazione ottimizzata per qualità PDF
       const canvas = await html2canvas(element, {
-        scale: 2,
+        scale: isMobile ? 3 : 2, // Scala più alta su mobile
         useCORS: true,
         allowTaint: true,
         backgroundColor: '#ffffff',
-        width: element.scrollWidth,
-        height: element.scrollHeight
+        width: isMobile ? 794 : element.scrollWidth, // Larghezza A4 in px (210mm * 3.78)
+        height: isMobile ? 1123 : element.scrollHeight, // Altezza A4 in px (297mm * 3.78)
+        scrollX: 0,
+        scrollY: 0
       });
 
-      const imgData = canvas.toDataURL('image/png');
+      // Rimuovi classe PDF generation
+      document.body.classList.remove('pdf-generating');
+
+      const imgData = canvas.toDataURL('image/jpeg', 0.95); // JPEG per file più piccoli
       
       // Formato A4: 210 x 297 mm
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pdfWidth = 210;
       const pdfHeight = 297;
       
-      // Calcola le dimensioni mantenendo le proporzioni
+      // Calcola le dimensioni ottimali
       const imgWidth = canvas.width;
       const imgHeight = canvas.height;
-      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
       
-      const scaledWidth = imgWidth * ratio;
-      const scaledHeight = imgHeight * ratio;
+      // Usa tutta la larghezza disponibile
+      const scaledWidth = pdfWidth;
+      const scaledHeight = (imgHeight * pdfWidth) / imgWidth;
       
-      // Centra l'immagine nella pagina
-      const x = (pdfWidth - scaledWidth) / 2;
-      const y = (pdfHeight - scaledHeight) / 2;
-
-      pdf.addImage(imgData, 'PNG', x, y, scaledWidth, scaledHeight);
+      // Se l'altezza supera la pagina, adatta
+      if (scaledHeight > pdfHeight) {
+        const finalHeight = pdfHeight;
+        const finalWidth = (imgWidth * pdfHeight) / imgHeight;
+        const x = (pdfWidth - finalWidth) / 2;
+        pdf.addImage(imgData, 'JPEG', x, 0, finalWidth, finalHeight);
+      } else {
+        // Centra verticalmente
+        const y = (pdfHeight - scaledHeight) / 2;
+        pdf.addImage(imgData, 'JPEG', 0, y, scaledWidth, scaledHeight);
+      }
+      
       pdf.save(`${fileName}.pdf`);
       
     } catch (error) {

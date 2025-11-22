@@ -92,3 +92,39 @@ body {
     transform: scale(0.98);
   }
 }
+
+/* PDF Export Optimization */
+@media print {
+  #cv-template {
+    transform: none !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    box-shadow: none !important;
+  }
+  
+  .cv-preview {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .cv-actions {
+    display: none !important;
+  }
+}
+
+/* PDF Generation Class */
+.pdf-generating {
+  #cv-template {
+    transform: none !important;
+    width: 210mm !important;
+    min-height: 297mm !important;
+    margin: 0 !important;
+    padding: 20mm !important;
+    background: white !important;
+    box-shadow: none !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+  }
+}
