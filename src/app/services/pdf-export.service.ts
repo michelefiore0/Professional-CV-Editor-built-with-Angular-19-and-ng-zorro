@@ -8,63 +8,129 @@ import jsPDF from 'jspdf';
 export class PdfExportService {
 
   async exportToPdf(elementId: string, fileName: string = 'cv'): Promise<void> {
+    let iframe: HTMLIFrameElement | null = null;
+    
     try {
       const originalElement = document.getElementById(elementId);
       if (!originalElement) {
         throw new Error('Elemento non trovato');
       }
 
-      // Clona l'elemento per non disturbare la visualizzazione
-      const clonedElement = originalElement.cloneNode(true) as HTMLElement;
-      
-      // Prepara il clone per la generazione PDF - SEMPRE 297mm
-      clonedElement.style.position = 'fixed';
-      clonedElement.style.left = '-9999px';
-      clonedElement.style.top = '0';
-      clonedElement.style.width = '210mm';
-      clonedElement.style.height = '297mm';
-      clonedElement.style.maxHeight = '297mm';
-      clonedElement.style.transform = 'none';
-      clonedElement.style.margin = '0';
-      clonedElement.style.padding = '0';
-      clonedElement.style.boxShadow = 'none';
-      clonedElement.style.overflow = 'hidden';
-      clonedElement.style.zIndex = '-1';
-      
-      // Aggiungi al DOM temporaneamente
-      document.body.appendChild(clonedElement);
-      
-      // Attendi rendering completo
-      await new Promise(resolve => setTimeout(resolve, 200));
+      // Trova il template CV
+      const cvTemplate = originalElement.querySelector('[class*="-cv"]') as HTMLElement;
+      if (!cvTemplate) {
+        throw new Error('Template CV non trovato');
+      }
 
-      // Genera canvas SEMPRE 210x297mm (single page)
-      const canvas = await html2canvas(clonedElement, {
+      // Crea iframe invisibile con viewport fissa A4
+      iframe = document.createElement('iframe');
+      iframe.style.cssText = `
+        position: fixed;
+        top: -10000px;
+        left: -10000px;
+        width: 794px;
+        height: 1123px;
+        border: none;
+        visibility: hidden;
+      `;
+      document.body.appendChild(iframe);
+
+      const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+      if (!iframeDoc) {
+        throw new Error('Impossibile accedere al documento iframe');
+      }
+
+      // Copia tutti gli stili nel iframe
+      const styles = Array.from(document.styleSheets)
+        .map(styleSheet => {
+          try {
+            return Array.from(styleSheet.cssRules)
+              .map(rule => rule.cssText)
+              .join('\n');
+          } catch (e) {
+            return '';
+          }
+        })
+        .join('\n');
+
+      // Scrivi HTML nell'iframe con viewport fissa
+      iframeDoc.open();
+      iframeDoc.write(`
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=794, initial-scale=1.0">
+            <style>
+              * { box-sizing: border-box; }
+              body {
+                margin: 0;
+                padding: 0;
+                width: 794px;
+                height: 1123px;
+                overflow: hidden;
+              }
+              ${styles}
+            </style>
+          </head>
+          <body>
+            <div style="width: 794px; height: 1123px; display: flex; justify-content: center; align-items: flex-start;">
+              ${cvTemplate.outerHTML}
+            </div>
+          </body>
+        </html>
+      `);
+      iframeDoc.close();
+
+      // Attendi caricamento completo
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      // Trova il template nel iframe
+      const iframeCV = iframeDoc.querySelector('[class*="-cv"]') as HTMLElement;
+      if (iframeCV) {
+        iframeCV.style.width = '794px';
+        iframeCV.style.height = '1123px';
+        iframeCV.style.transform = 'none';
+        iframeCV.style.margin = '0';
+      }
+
+      // Attendi rendering
+      await new Promise(resolve => setTimeout(resolve, 300));
+
+      // Genera canvas dall'iframe
+      const canvas = await html2canvas(iframeDoc.body, {
         scale: 2,
         useCORS: true,
         allowTaint: true,
         backgroundColor: '#ffffff',
-        width: 794,  // 210mm
-        height: 1123, // 297mm
-        scrollX: 0,
-        scrollY: 0,
+        width: 794,
+        height: 1123,
         windowWidth: 794,
-        windowHeight: 1123
+        windowHeight: 1123,
+        logging: false
       });
-      
-      // Rimuovi il clone
-      document.body.removeChild(clonedElement);
-      
+
+      // Rimuovi iframe
+      document.body.removeChild(iframe);
+      iframe = null;
+
+      // Crea PDF
       const imgData = canvas.toDataURL('image/jpeg', 0.95);
-      
-      // Crea PDF A4 single-page
-      const pdf = new jsPDF('p', 'mm', 'a4');
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4',
+        compress: true
+      });
+
       pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297);
       pdf.save(`${fileName}.pdf`);
-      
-      await new Promise(resolve => setTimeout(resolve, 100));
-      
+
     } catch (error) {
-      console.error('Errore durante l\'esportazione PDF:', error);
+      console.error('Errore durante esportazione PDF:', error);
+      if (iframe && iframe.parentNode) {
+        document.body.removeChild(iframe);
+      }
       throw error;
     }
   }
