@@ -250,71 +250,21 @@
   }
 }
 
-/* Enhanced Mobile Responsive */
+/* Mobile Responsive - Only Scale for Visibility */
 @media (max-width: 768px) {
   .minimal-cv {
-    max-width: 100% !important;
-    padding: 20px !important;
+    transform: scale(0.7);
+    transform-origin: top left;
+    width: 142.86%; /* 100% / 0.7 */
     margin: 0 !important;
     box-shadow: none !important;
-  }
-  
-  .cv-header {
-    margin-bottom: 30px !important;
-    padding-bottom: 20px !important;
-    
-    h1 {
-      font-size: 2em !important;
-      letter-spacing: 2px !important;
-    }
-    
-    .subtitle {
-      font-size: 1.1em !important;
-    }
-    
-    .contact-line {
-      font-size: 0.9em !important;
-    }
-  }
-  
-  .section {
-    margin-bottom: 25px !important;
-    
-    h2 {
-      font-size: 1.2em !important;
-      margin-bottom: 15px !important;
-    }
-  }
-  
-  .item {
-    margin-bottom: 20px !important;
-    
-    .item-header {
-      flex-direction: column !important;
-      align-items: flex-start !important;
-      gap: 5px !important;
-    }
-  }
-  
-  .bottom-sections {
-    grid-template-columns: 1fr !important;
-    gap: 20px !important;
   }
 }
 
 @media (max-width: 480px) {
   .minimal-cv {
-    padding: 15px !important;
-  }
-  
-  .cv-header {
-    h1 {
-      font-size: 1.6em !important;
-      letter-spacing: 1px !important;
-    }
-    
-    .subtitle {
-      font-size: 1em !important;
-    }
+    transform: scale(0.5);
+    transform-origin: top left;
+    width: 200%; /* 100% / 0.5 */
   }
 }

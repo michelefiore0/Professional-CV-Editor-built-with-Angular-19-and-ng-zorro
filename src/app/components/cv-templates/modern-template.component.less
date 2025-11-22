@@ -276,99 +276,21 @@
   }
 }
 
-/* Mobile Responsive */
+/* Mobile Responsive - Only Scale for Visibility */
 @media (max-width: 768px) {
   .modern-cv {
-    max-width: 100% !important;
+    transform: scale(0.7);
+    transform-origin: top left;
+    width: 142.86%; /* 100% / 0.7 */
     margin: 0 !important;
     box-shadow: none !important;
-  }
-  
-  .cv-header {
-    padding: 20px !important;
-    flex-direction: column !important;
-    gap: 15px !important;
-    
-    .profile-photo {
-      width: 80px !important;
-      height: 80px !important;
-    }
-    
-    .personal-info {
-      h1 {
-        font-size: 1.8em !important;
-      }
-      
-      h2 {
-        font-size: 1.1em !important;
-      }
-      
-      .contact-info {
-        flex-direction: column !important;
-        gap: 8px !important;
-        
-        span {
-          font-size: 0.8em !important;
-        }
-      }
-    }
-  }
-  
-  .cv-content {
-    flex-direction: column !important;
-  }
-  
-  .left-column, .right-column {
-    padding: 20px !important;
-  }
-  
-  .skill-tags {
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)) !important;
-    gap: 6px !important;
-    
-    .skill-tag {
-      font-size: 0.8em !important;
-      padding: 6px 10px !important;
-    }
-  }
-  
-  .language-item {
-    padding: 10px 12px !important;
-    
-    .language {
-      font-size: 0.9em !important;
-    }
-    
-    .level {
-      font-size: 0.8em !important;
-    }
   }
 }
 
 @media (max-width: 480px) {
-  .cv-header {
-    padding: 15px !important;
-    
-    .personal-info {
-      h1 {
-        font-size: 1.5em !important;
-      }
-      
-      h2 {
-        font-size: 1em !important;
-      }
-    }
-  }
-  
-  .left-column, .right-column {
-    padding: 15px !important;
-  }
-  
-  h3 {
-    font-size: 1.1em !important;
-  }
-  
-  .skill-tags {
-    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)) !important;
+  .modern-cv {
+    transform: scale(0.5);
+    transform-origin: top left;
+    width: 200%; /* 100% / 0.5 */
   }
 }

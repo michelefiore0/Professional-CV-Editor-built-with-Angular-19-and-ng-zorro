@@ -23,20 +23,18 @@ export class PdfExportService {
       // Attendi che i CSS si applichino
       await new Promise(resolve => setTimeout(resolve, 100));
 
-      // Forza dimensioni desktop per PDF completo
+      // Salva stato originale per ripristino
+      const originalTransform = element.style.transform;
       const originalWidth = element.style.width;
-      const originalHeight = element.style.height;
-      const originalOverflow = element.style.overflow;
+      const originalMargin = element.style.marginBottom;
       
-      if (isMobile) {
-        // Forza dimensioni desktop temporaneamente
-        element.style.width = '794px'; // A4 width in pixels
-        element.style.height = 'auto';
-        element.style.overflow = 'visible';
-        
-        // Attendi che il layout si adatti
-        await new Promise(resolve => setTimeout(resolve, 200));
-      }
+      // Rimuovi trasformazioni mobile per PDF
+      element.style.transform = 'none';
+      element.style.width = 'auto';
+      element.style.marginBottom = '0';
+      
+      // Attendi che il layout si adatti
+      await new Promise(resolve => setTimeout(resolve, 100));
 
       // Configurazione ottimizzata per qualità PDF
       const canvas = await html2canvas(element, {
@@ -52,12 +50,10 @@ export class PdfExportService {
         windowHeight: 1123
       });
       
-      // Ripristina dimensioni originali
-      if (isMobile) {
-        element.style.width = originalWidth;
-        element.style.height = originalHeight;
-        element.style.overflow = originalOverflow;
-      }
+      // Ripristina stato originale
+      element.style.transform = originalTransform;
+      element.style.width = originalWidth;
+      element.style.marginBottom = originalMargin;
 
       // Rimuovi classe PDF generation
       document.body.classList.remove('pdf-generating');
@@ -73,45 +69,19 @@ export class PdfExportService {
       const imgWidth = canvas.width;
       const imgHeight = canvas.height;
       
-      // Mantieni proporzioni originali senza tagliare
-      const scaledWidth = pdfWidth;
-      const scaledHeight = (imgHeight * pdfWidth) / imgWidth;
+      // Scala per far entrare tutto in una singola pagina senza spazi bianchi
+      const widthRatio = pdfWidth / imgWidth;
+      const heightRatio = pdfHeight / imgHeight;
+      const scale = Math.min(widthRatio, heightRatio);
       
-      if (scaledHeight <= pdfHeight) {
-        // Entra in una pagina - centra verticalmente
-        const y = (pdfHeight - scaledHeight) / 2;
-        pdf.addImage(imgData, 'JPEG', 0, y, scaledWidth, scaledHeight);
-      } else {
-        // Multipagina - mantieni tutto il contenuto
-        let currentY = 0;
-        let remainingHeight = scaledHeight;
-        let pageCount = 0;
-        
-        while (remainingHeight > 0) {
-          if (pageCount > 0) {
-            pdf.addPage();
-          }
-          
-          const pageHeight = Math.min(remainingHeight, pdfHeight);
-          const sourceY = (currentY / scaledHeight) * imgHeight;
-          const sourceHeight = (pageHeight / scaledHeight) * imgHeight;
-          
-          // Crea canvas per questa sezione
-          const pageCanvas = document.createElement('canvas');
-          const pageCtx = pageCanvas.getContext('2d')!;
-          pageCanvas.width = imgWidth;
-          pageCanvas.height = sourceHeight;
-          
-          pageCtx.drawImage(canvas, 0, sourceY, imgWidth, sourceHeight, 0, 0, imgWidth, sourceHeight);
-          const pageImgData = pageCanvas.toDataURL('image/jpeg', 0.95);
-          
-          pdf.addImage(pageImgData, 'JPEG', 0, 0, scaledWidth, pageHeight);
-          
-          currentY += pageHeight;
-          remainingHeight -= pageHeight;
-          pageCount++;
-        }
-      }
+      const finalWidth = imgWidth * scale;
+      const finalHeight = imgHeight * scale;
+      
+      // Centra nell'area disponibile
+      const x = (pdfWidth - finalWidth) / 2;
+      const y = (pdfHeight - finalHeight) / 2;
+      
+      pdf.addImage(imgData, 'JPEG', x, y, finalWidth, finalHeight);
       
       pdf.save(`${fileName}.pdf`);
       
