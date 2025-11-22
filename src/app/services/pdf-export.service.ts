@@ -83,7 +83,11 @@ export class PdfExportService {
       
       pdf.addImage(imgData, 'JPEG', x, y, finalWidth, finalHeight);
       
+      // Trigger download with proper filename
       pdf.save(`${fileName}.pdf`);
+      
+      // Small delay to ensure download started
+      await new Promise(resolve => setTimeout(resolve, 100));
       
     } catch (error) {
       console.error('Errore durante l\'esportazione PDF:', error);

@@ -280,16 +280,23 @@ export class AppComponent {
     if (!this.cvData || !this.selectedTemplate) return;
     
     try {
-      this.message.loading('Generazione PDF in corso...', { nzDuration: 0 });
+      // Show loading message
+      const loadingMsg = this.message.loading('Preparazione PDF in corso...', { nzDuration: 0 });
+      
+      // Simulate progress steps
+      setTimeout(() => {
+        this.message.remove(loadingMsg.messageId);
+        this.message.loading('Generazione documento...', { nzDuration: 0 });
+      }, 500);
       
       const fileName = `CV_${this.cvData.personalInfo.name.replace(/\s+/g, '_')}`;
       await this.pdfExportService.exportToPdf('cv-template', fileName);
       
       this.message.remove();
-      this.message.success('PDF scaricato con successo!');
+      this.message.success('✓ PDF scaricato con successo!', { nzDuration: 3000 });
     } catch (error) {
       this.message.remove();
-      this.message.error('Errore durante il download del PDF');
+      this.message.error('✗ Errore durante il download del PDF');
       console.error(error);
     }
   }
