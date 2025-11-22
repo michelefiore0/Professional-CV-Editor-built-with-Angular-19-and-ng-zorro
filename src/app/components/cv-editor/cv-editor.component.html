@@ -89,20 +89,17 @@
                         <span nz-icon nzType="cloud-upload" class="upload-icon"></span>
                         <p>Trascina qui la tua foto o</p>
                         <div class="upload-buttons">
-                          <label class="upload-button">
-                            <input type="file" accept="image/*" capture="environment" (change)="onPhotoUpload($event)" hidden>
-                            <button nz-button nzType="primary">
-                              <span nz-icon nzType="camera"></span>
-                              Fotocamera
-                            </button>
-                          </label>
-                          <label class="upload-button">
-                            <input type="file" accept="image/*" (change)="onPhotoUpload($event)" hidden>
-                            <button nz-button nzType="default">
-                              <span nz-icon nzType="picture"></span>
-                              Galleria
-                            </button>
-                          </label>
+                          <input type="file" #cameraInput accept="image/*" capture="environment" (change)="onPhotoUpload($event)" hidden>
+                          <button nz-button nzType="primary" (click)="cameraInput.click()">
+                            <span nz-icon nzType="camera"></span>
+                            Fotocamera
+                          </button>
+                          
+                          <input type="file" #galleryInput accept="image/*" (change)="onPhotoUpload($event)" hidden>
+                          <button nz-button nzType="default" (click)="galleryInput.click()">
+                            <span nz-icon nzType="picture"></span>
+                            Galleria
+                          </button>
                         </div>
                         <p class="upload-hint">Formati supportati: JPG, PNG (max 5MB)</p>
                       </div>
