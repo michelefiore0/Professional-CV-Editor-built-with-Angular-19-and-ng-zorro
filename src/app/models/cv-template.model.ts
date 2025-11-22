@@ -5,6 +5,7 @@ export interface CVData {
     email: string;
     phone: string;
     location: string;
+    city: string;
     summary: string;
     photo?: string;
   };
@@ -19,6 +20,7 @@ export interface CVData {
     institution: string;
     degree: string;
     city: string;
+    year: string;
     startDate: string;
     endDate: string;
   }>;
@@ -27,6 +29,7 @@ export interface CVData {
     language: string;
     level: string;
   }>;
+  photo?: string;
 }
 
 export interface CVTemplate {

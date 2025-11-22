@@ -27,7 +27,7 @@ export class TemplateSelectorComponent implements OnInit {
   
   templates: CVTemplate[] = [];
   sampleData: CVData | null = null;
-  previewTemplate: CVTemplate | null = null;
+  selectedPreviewTemplate: CVTemplate | null = null;
   showPreview = false;
 
   constructor(private templateService: CVTemplateService) {}
@@ -43,7 +43,7 @@ export class TemplateSelectorComponent implements OnInit {
   }
 
   previewTemplate(template: CVTemplate) {
-    this.previewTemplate = template;
+    this.selectedPreviewTemplate = template;
     this.showPreview = true;
   }
 
@@ -54,7 +54,7 @@ export class TemplateSelectorComponent implements OnInit {
 
   onPreviewCancelled() {
     this.showPreview = false;
-    this.previewTemplate = null;
+    this.selectedPreviewTemplate = null;
   }
 
   getCategoryColor(category: string): string {

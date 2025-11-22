@@ -61,8 +61,8 @@
   </div>
 
   <app-template-preview
-    *ngIf="previewTemplate && sampleData"
-    [template]="previewTemplate"
+    *ngIf="selectedPreviewTemplate && sampleData"
+    [template]="selectedPreviewTemplate"
     [cvData]="sampleData"
     [isVisible]="showPreview"
     (confirmed)="onPreviewConfirmed($event)"

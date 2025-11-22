@@ -80,6 +80,7 @@ export class CVTemplateService {
       email: 'mario.rossi@email.com',
       phone: '+39 123 456 7890',
       location: 'Milano, Italia',
+      city: 'Milano',
       summary: 'Sviluppatore appassionato con 5 anni di esperienza in tecnologie web moderne.',
       photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face'
     },
@@ -111,6 +112,7 @@ export class CVTemplateService {
         institution: 'Università Statale di Milano',
         degree: 'Laurea Magistrale in Informatica',
         city: 'Milano',
+        year: '2020',
         startDate: '2018-09',
         endDate: '2020-07'
       },
@@ -118,6 +120,7 @@ export class CVTemplateService {
         institution: 'Università Statale di Milano',
         degree: 'Laurea Triennale in Informatica',
         city: 'Milano',
+        year: '2018',
         startDate: '2015-09',
         endDate: '2018-07'
       },
@@ -125,6 +128,7 @@ export class CVTemplateService {
         institution: 'Liceo Scientifico',
         degree: 'Diploma di Maturità Scientifica',
         city: 'Milano',
+        year: '2015',
         startDate: '2010-09',
         endDate: '2015-06'
       }
