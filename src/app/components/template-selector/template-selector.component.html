@@ -3,7 +3,7 @@
   <p>Clicca su un template per vedere l'anteprima completa</p>
   
   <div nz-row [nzGutter]="[16, 16]">
-    <div nz-col [nzSpan]="6" *ngFor="let template of templates">
+    <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8" [nzLg]="6" *ngFor="let template of templates">
       <nz-card 
         class="template-card"
         [nzCover]="coverTemplate"

@@ -159,6 +159,74 @@ import { NzMessageService } from 'ng-zorro-antd/message';
       display: flex;
       gap: 12px;
     }
+    
+    .cv-editor-container {
+      padding: 0 24px;
+    }
+    
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .logo {
+        width: 80px;
+        font-size: 12px;
+        margin: 16px 12px 16px 0;
+      }
+      
+      .header-menu {
+        display: none;
+      }
+      
+      .cv-editor-container {
+        padding: 0 12px;
+      }
+      
+      .welcome-card {
+        margin-top: 12px;
+      }
+      
+      .welcome-card p {
+        font-size: 14px;
+      }
+      
+      .cv-actions {
+        flex-direction: column;
+        gap: 8px;
+      }
+      
+      .cv-actions button {
+        width: 100%;
+      }
+      
+      .cv-preview {
+        margin-top: 12px;
+      }
+      
+      #cv-template {
+        transform: scale(0.7);
+        transform-origin: top left;
+        width: 142.86%; /* 100% / 0.7 */
+        margin-bottom: -30%;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .logo {
+        width: 60px;
+        font-size: 10px;
+        margin: 16px 8px 16px 0;
+      }
+      
+      .cv-editor-container {
+        padding: 0 8px;
+      }
+      
+      #cv-template {
+        transform: scale(0.5);
+        transform-origin: top left;
+        width: 200%; /* 100% / 0.5 */
+        margin-bottom: -50%;
+      }
+    }
   `]
 })
 export class AppComponent {

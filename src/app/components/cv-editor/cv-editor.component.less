@@ -187,22 +187,48 @@ nz-collapse {
 // Responsive
 @media (max-width: 768px) {
   .cv-editor {
-    padding: 16px;
+    padding: 12px;
   }
 
   .editor-header {
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     align-items: stretch;
+
+    h2 {
+      font-size: 1.3em;
+      text-align: center;
+    }
 
     .header-actions {
       justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+      
+      button {
+        width: 100%;
+      }
     }
   }
 
   .cv-form {
     .ant-col {
       margin-bottom: 8px;
+    }
+    
+    nz-form-item {
+      margin-bottom: 12px;
+    }
+  }
+
+  nz-collapse {
+    .ant-collapse-header {
+      padding: 12px 16px;
+      font-size: 1em;
+    }
+
+    .ant-collapse-content-box {
+      padding: 16px;
     }
   }
 
@@ -213,10 +239,63 @@ nz-collapse {
     }
 
     .photo-dropzone {
-      padding: 30px 15px;
+      padding: 24px 12px;
 
       .dropzone-content .upload-icon {
         font-size: 36px;
+      }
+    }
+  }
+  
+  .array-item {
+    margin-bottom: 12px;
+  }
+  
+  .add-button {
+    height: 36px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cv-editor {
+    padding: 8px;
+  }
+  
+  .editor-header {
+    h2 {
+      font-size: 1.2em;
+    }
+  }
+  
+  nz-collapse {
+    .ant-collapse-header {
+      padding: 10px 12px;
+      font-size: 0.9em;
+    }
+
+    .ant-collapse-content-box {
+      padding: 12px;
+    }
+  }
+  
+  .photo-upload-container {
+    .photo-preview {
+      width: 100px;
+      height: 100px;
+    }
+
+    .photo-dropzone {
+      padding: 20px 8px;
+
+      .dropzone-content {
+        .upload-icon {
+          font-size: 28px;
+        }
+        
+        p {
+          font-size: 12px;
+        }
       }
     }
   }
