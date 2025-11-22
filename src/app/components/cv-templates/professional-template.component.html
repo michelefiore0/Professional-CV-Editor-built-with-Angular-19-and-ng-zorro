@@ -1,60 +1,62 @@
-<div class="professional-cv">
-  <div class="cv-header">
-    <div class="photo-section" *ngIf="cvData.personalInfo.photo">
-      <img [src]="cvData.personalInfo.photo" [alt]="cvData.personalInfo.name" class="profile-photo">
+<div class="professional-template">
+  <div class="header">
+    <div class="photo-section" *ngIf="cvData.photo">
+      <img [src]="cvData.photo" alt="Profile Photo" class="profile-photo" />
     </div>
     <div class="personal-info">
       <h1>{{ cvData.personalInfo.name }}</h1>
       <h2>{{ cvData.personalInfo.title }}</h2>
       <div class="contact-info">
-        <span>{{ cvData.personalInfo.email }}</span>
-        <span>{{ cvData.personalInfo.phone }}</span>
-        <span>{{ cvData.personalInfo.location }}</span>
+        <p><strong>Email:</strong> {{ cvData.personalInfo.email }}</p>
+        <p><strong>Telefono:</strong> {{ cvData.personalInfo.phone }}</p>
+        <p><strong>Città:</strong> {{ cvData.personalInfo.city }}</p>
       </div>
     </div>
   </div>
 
-  <div class="cv-content">
+  <div class="content">
     <div class="left-column">
-      <section>
-        <h3>Competenze</h3>
-        <div class="skill-tags">
-          <div class="skill-tag" *ngFor="let skill of cvData.skills">{{ skill }}</div>
-        </div>
+      <section class="summary">
+        <h3>Profilo Professionale</h3>
+        <p>{{ cvData.personalInfo.summary }}</p>
       </section>
 
-      <section>
-        <h3>Lingue</h3>
-        <div class="language-item" *ngFor="let lang of cvData.languages">
-          <span class="language">{{ lang.language }}</span>
-          <span class="level">{{ lang.level }}</span>
-        </div>
-      </section>
-
-    </div>
-
-    <div class="right-column">
-      <section>
-        <h3>Profilo</h3>
-        <p class="summary">{{ cvData.personalInfo.summary }}</p>
-      </section>
-
-      <section>
-        <h3>Esperienza</h3>
+      <section class="experience">
+        <h3>Esperienza Lavorativa</h3>
         <div class="experience-item" *ngFor="let exp of cvData.experience">
-          <div class="period">{{ exp.startDate }} - {{ exp.endDate }}</div>
           <h4>{{ exp.position }}</h4>
-          <h5>{{ exp.company }}</h5>
+          <p class="company">
+            {{ exp.company }} | {{ exp.startDate }} - {{ exp.endDate }}
+          </p>
           <p>{{ exp.description }}</p>
         </div>
       </section>
 
-      <section>
+      <section class="education">
         <h3>Formazione</h3>
         <div class="education-item" *ngFor="let edu of cvData.education">
-          <div class="period">{{ edu.startDate }} - {{ edu.endDate }}</div>
           <h4>{{ edu.degree }}</h4>
-          <h5>{{ edu.institution }}</h5>
+          <p>{{ edu.institution }} | {{ edu.year }}</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="right-column">
+
+      <section class="skills">
+        <h3>Competenze</h3>
+        <div class="skills-list">
+          <span class="skill-tag" *ngFor="let skill of cvData.skills">{{
+            skill
+          }}</span>
+        </div>
+      </section>
+
+      <section class="languages">
+        <h3>Lingue</h3>
+        <div class="language-item" *ngFor="let lang of cvData.languages">
+          <span class="language">{{ lang.language }}</span>
+          <span class="level">{{ lang.level }}</span>
         </div>
       </section>
     </div>
