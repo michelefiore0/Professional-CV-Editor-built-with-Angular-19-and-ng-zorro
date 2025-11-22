@@ -1,14 +1,14 @@
 <div class="cv-editor">
   <!-- Header -->
   <div class="editor-header">
-    <button nz-button nzType="text" class="back-btn" (click)="onBack()">
-      <span nz-icon nzType="arrow-left"></span>
-      <span class="back-text">Indietro</span>
+    <button nz-button nzType="default" class="back-btn" (click)="onBack()">
+      <span class="btn-icon">←</span>
+      <span class="btn-text">Indietro</span>
     </button>
     <h2>Modifica CV</h2>
     <button nz-button nzType="primary" class="save-btn" (click)="onSave()" [disabled]="!cvForm.valid">
-      <span nz-icon nzType="save"></span>
-      <span class="save-text">Salva</span>
+      <span class="btn-icon">✓</span>
+      <span class="btn-text">Salva</span>
     </button>
   </div>
 

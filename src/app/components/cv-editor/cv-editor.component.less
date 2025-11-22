@@ -5,6 +5,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 200px);
 }
 
 // Header
@@ -12,33 +13,61 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   gap: 12px;
+  background: white;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 
   h2 {
     margin: 0;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 22px;
+    font-weight: 700;
     flex: 1;
     text-align: center;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
   }
 
   .back-btn, .save-btn {
     flex-shrink: 0;
+    height: 40px;
+    font-weight: 500;
   }
 
   .back-text, .save-text {
-    margin-left: 4px;
+    margin-left: 6px;
   }
 }
 
 // Steps
 .steps-container {
-  margin-bottom: 32px;
+  margin-bottom: 36px;
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   
   .wizard-steps {
-    ::ng-deep .ant-steps-item-title {
-      font-size: 13px;
+    ::ng-deep {
+      .ant-steps-item-title {
+        font-size: 13px;
+        font-weight: 500;
+      }
+      
+      .ant-steps-item-process .ant-steps-item-icon {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-color: #667eea;
+      }
+      
+      .ant-steps-item-finish .ant-steps-item-icon {
+        border-color: #52c41a;
+        
+        .ant-steps-icon {
+          color: #52c41a;
+        }
+      }
     }
   }
 }
@@ -59,38 +88,53 @@
 }
 
 .step-header {
-  margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 2px solid #f0f0f0;
+  margin-bottom: 28px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
 
   h3 {
-    margin: 0 0 8px 0;
-    font-size: 18px;
-    font-weight: 600;
+    margin: 0 0 6px 0;
+    font-size: 20px;
+    font-weight: 700;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    color: white;
+    letter-spacing: -0.3px;
+    
+    span[nz-icon] {
+      font-size: 24px;
+    }
   }
 
   p {
     margin: 0;
-    color: #8c8c8c;
+    color: rgba(255, 255, 255, 0.9);
     font-size: 14px;
+    font-weight: 400;
   }
 }
 
 .form-section {
+  background: white;
+  padding: 28px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  
   nz-form-item {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     display: block;
   }
 
   nz-form-label {
-    font-weight: 500;
+    font-weight: 600;
     font-size: 14px;
     margin-bottom: 8px;
     display: block;
     width: 100%;
+    color: #262626;
   }
 
   nz-form-control {
@@ -104,13 +148,25 @@
 
   input, textarea {
     font-size: 15px;
-    padding: 10px 12px;
-    border-radius: 6px;
+    padding: 11px 14px;
+    border-radius: 8px;
+    border: 1.5px solid #e0e0e0;
+    transition: all 0.3s;
+    
+    &:hover {
+      border-color: #b8b8b8;
+    }
+    
+    &:focus {
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
   }
 
   textarea {
     resize: vertical;
-    min-height: 100px;
+    min-height: 110px;
+    line-height: 1.6;
   }
 
   ::ng-deep {
@@ -122,30 +178,65 @@
     .ant-form-item-control {
       max-width: 100%;
     }
+    
+    .ant-select-selector {
+      border-radius: 8px !important;
+      border: 1.5px solid #e0e0e0 !important;
+      padding: 6px 14px !important;
+      min-height: 44px !important;
+      transition: all 0.3s !important;
+      
+      &:hover {
+        border-color: #b8b8b8 !important;
+      }
+    }
+    
+    .ant-select-focused .ant-select-selector {
+      border-color: #667eea !important;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+    }
   }
 }
 
 // Card Items
 .card-item {
-  background: #fafafa;
-  border: 1px solid #e8e8e8;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 16px;
+  background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
+  border: 1.5px solid #e3e6ea;
+  border-radius: 10px;
+  padding: 22px;
+  margin-bottom: 18px;
   width: 100%;
+  transition: all 0.3s;
+  
+  &:hover {
+    border-color: #667eea;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.08);
+    transform: translateY(-2px);
+  }
 
   .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid #e8e8e8;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid #e8ecf0;
 
     .card-title {
-      font-weight: 600;
-      font-size: 15px;
-      color: #262626;
+      font-weight: 700;
+      font-size: 16px;
+      color: #1a1a1a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      
+      &::before {
+        content: '';
+        width: 4px;
+        height: 18px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 2px;
+      }
     }
   }
 }
@@ -154,30 +245,36 @@
 .date-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 16px;
 }
 
 // Skills Grid
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 12px;
-  margin-bottom: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
 // Add Button
 .add-btn {
-  height: 44px;
-  border: 2px dashed #d9d9d9;
-  background: #fafafa;
-  color: #666;
-  font-weight: 500;
+  height: 48px;
+  border: 2px dashed #d0d5dd;
+  background: white;
+  color: #667eea;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 10px;
   transition: all 0.3s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
 
   &:hover {
-    border-color: #1890ff;
-    color: #1890ff;
-    background: #e6f7ff;
+    border-color: #667eea;
+    border-style: solid;
+    color: white;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
+    transform: translateY(-1px);
   }
 }
 
@@ -185,12 +282,13 @@
 .photo-upload {
   .photo-preview {
     position: relative;
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     margin: 0 auto;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    border: 3px solid white;
 
     img {
       width: 100%;
@@ -202,37 +300,47 @@
       position: absolute;
       top: 8px;
       right: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
   }
 
   .photo-dropzone {
-    border: 2px dashed #d9d9d9;
-    border-radius: 8px;
-    padding: 24px;
+    border: 2px dashed #d0d5dd;
+    border-radius: 12px;
+    padding: 32px 24px;
     text-align: center;
-    background: #fafafa;
+    background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
     transition: all 0.3s;
+    cursor: pointer;
 
     &:hover {
-      border-color: #1890ff;
-      background: #e6f7ff;
+      border-color: #667eea;
+      border-style: solid;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
     }
 
     .upload-icon {
-      font-size: 36px;
-      color: #bfbfbf;
+      font-size: 42px;
+      color: #667eea;
       display: block;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     p {
-      margin: 8px 0;
-      color: #8c8c8c;
+      margin: 10px 0;
+      color: #4a5568;
       font-size: 14px;
+      font-weight: 500;
     }
 
     .upload-btns {
-      margin-top: 12px;
+      margin-top: 16px;
+      
+      button {
+        font-weight: 600;
+      }
     }
   }
 }
@@ -244,24 +352,50 @@
   left: 0;
   right: 0;
   background: white;
-  border-top: 1px solid #f0f0f0;
-  padding: 16px;
+  border-top: 1px solid #e8ecf0;
+  padding: 18px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
-  box-shadow: 0 -2px 8px rgba(0,0,0,0.06);
+  gap: 20px;
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
   z-index: 100;
+  backdrop-filter: blur(10px);
 
   button {
     flex: 1;
-    max-width: 140px;
+    max-width: 150px;
+    height: 46px;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 10px;
+    transition: all 0.3s;
+    
+    &[nz-button][nzType="primary"] {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+      
+      &:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+      }
+      
+      &:disabled {
+        background: #d9d9d9;
+        box-shadow: none;
+      }
+    }
   }
 
   .step-indicator {
-    font-weight: 600;
-    font-size: 15px;
-    color: #1890ff;
+    font-weight: 700;
+    font-size: 16px;
+    color: #667eea;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    padding: 8px 20px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
   }
 }
 
@@ -273,18 +407,29 @@
 
   .editor-header {
     margin-bottom: 20px;
+    padding: 12px 16px;
+    border-radius: 10px;
 
     h2 {
       font-size: 18px;
     }
 
-    .back-text, .save-text {
-      display: none;
+    .back-btn, .save-btn {
+      .btn-text {
+        display: none !important;
+      }
+      
+      .btn-icon {
+        font-size: 22px !important;
+        line-height: 1;
+      }
     }
   }
 
   .steps-container {
     margin-bottom: 24px;
+    padding: 18px;
+    border-radius: 10px;
 
     ::ng-deep .ant-steps-item-title {
       display: none !important;
@@ -315,14 +460,29 @@
 
   .editor-header {
     margin-bottom: 16px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    gap: 8px;
 
     h2 {
       font-size: 16px;
+      letter-spacing: -0.3px;
+    }
+
+    .back-btn, .save-btn {
+      height: 36px;
+      padding: 0 12px;
+      
+      .btn-icon {
+        font-size: 20px;
+      }
     }
   }
 
   .steps-container {
     margin-bottom: 20px;
+    padding: 14px 12px;
+    border-radius: 8px;
     
     ::ng-deep {
       .ant-steps-item-icon {
