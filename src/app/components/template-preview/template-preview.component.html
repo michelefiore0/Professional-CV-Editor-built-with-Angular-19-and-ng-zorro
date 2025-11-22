@@ -1,0 +1,33 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="'Anteprima: ' + template.name"
+  [nzWidth]="900"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="onCancel()">
+  
+  <div class="template-preview-container">
+    <div class="preview-wrapper">
+      <app-modern-template *ngIf="template.id === 'modern-1'" [cvData]="cvData"></app-modern-template>
+      <app-classic-template *ngIf="template.id === 'classic-1'" [cvData]="cvData"></app-classic-template>
+      <app-creative-template *ngIf="template.id === 'creative-1'" [cvData]="cvData"></app-creative-template>
+      <app-minimal-template *ngIf="template.id === 'minimal-1'" [cvData]="cvData"></app-minimal-template>
+      <app-professional-template *ngIf="template.id === 'professional-1'" [cvData]="cvData"></app-professional-template>
+      <app-tech-template *ngIf="template.id === 'tech-1'" [cvData]="cvData"></app-tech-template>
+      <app-executive-template *ngIf="template.id === 'executive-1'" [cvData]="cvData"></app-executive-template>
+      <app-simple-template *ngIf="template.id === 'simple-1'" [cvData]="cvData"></app-simple-template>
+    </div>
+  </div>
+
+  <ng-template #modalFooter>
+    <div class="modal-footer">
+      <button nz-button (click)="onCancel()">
+        <span nz-icon nzType="arrow-left"></span>
+        Torna alla Lista
+      </button>
+      <button nz-button nzType="primary" (click)="onConfirm()">
+        <span nz-icon nzType="check"></span>
+        Usa questo Template
+      </button>
+    </div>
+  </ng-template>
+</nz-modal>

@@ -1,0 +1,347 @@
+<div class="cv-editor">
+  <div class="editor-header">
+    <h2>Modifica il tuo CV</h2>
+    <div class="header-actions">
+      <button nz-button (click)="onBack()">
+        <span nz-icon nzType="arrow-left"></span>
+        Anteprima
+      </button>
+      <button nz-button nzType="primary" (click)="onSave()" [disabled]="!cvForm.valid">
+        <span nz-icon nzType="save"></span>
+        Salva Modifiche
+      </button>
+    </div>
+  </div>
+
+  <form [formGroup]="cvForm" class="cv-form">
+    <nz-collapse nzAccordion>
+      
+      <!-- Informazioni Personali -->
+      <nz-collapse-panel nzHeader="Informazioni Personali" nzActive="true">
+        <div formGroupName="personalInfo" class="form-section">
+          <div nz-row [nzGutter]="16">
+            <div nz-col [nzSpan]="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Nome Completo</nz-form-label>
+                <nz-form-control nzErrorTip="Il nome è obbligatorio">
+                  <input nz-input formControlName="name" placeholder="Mario Rossi" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="12">
+              <nz-form-item>
+                <nz-form-label nzRequired>Titolo Professionale</nz-form-label>
+                <nz-form-control nzErrorTip="Il titolo è obbligatorio">
+                  <input nz-input formControlName="title" placeholder="Sviluppatore Full Stack" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+
+          <div nz-row [nzGutter]="16">
+            <div nz-col [nzSpan]="8">
+              <nz-form-item>
+                <nz-form-label nzRequired>Email</nz-form-label>
+                <nz-form-control nzErrorTip="Inserisci un'email valida">
+                  <input nz-input formControlName="email" placeholder="mario@email.com" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="8">
+              <nz-form-item>
+                <nz-form-label nzRequired>Telefono</nz-form-label>
+                <nz-form-control nzErrorTip="Il telefono è obbligatorio">
+                  <input nz-input formControlName="phone" placeholder="+39 123 456 7890" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col [nzSpan]="8">
+              <nz-form-item>
+                <nz-form-label nzRequired>Località</nz-form-label>
+                <nz-form-control nzErrorTip="La località è obbligatoria">
+                  <nz-select formControlName="location" nzPlaceHolder="Seleziona città" nzShowSearch>
+                    <nz-option *ngFor="let city of allCities" [nzValue]="city" [nzLabel]="city"></nz-option>
+                  </nz-select>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+
+          <div nz-row *ngIf="hasPhoto">
+            <div nz-col [nzSpan]="24">
+              <nz-form-item>
+                <nz-form-label>Foto Profilo</nz-form-label>
+                <nz-form-control>
+                  <div class="photo-upload-container">
+                    <div class="photo-preview" *ngIf="cvForm.get('personalInfo.photo')?.value">
+                      <img [src]="cvForm.get('personalInfo.photo')?.value" alt="Foto profilo" />
+                      <div class="photo-overlay">
+                        <button nz-button nzType="primary" nzShape="circle" (click)="removePhoto()">
+                          <span nz-icon nzType="delete"></span>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="photo-dropzone" 
+                         *ngIf="!cvForm.get('personalInfo.photo')?.value"
+                         (drop)="onPhotoDrop($event)"
+                         (dragover)="onPhotoDragOver($event)">
+                      <div class="dropzone-content">
+                        <span nz-icon nzType="cloud-upload" class="upload-icon"></span>
+                        <p>Trascina qui la tua foto o</p>
+                        <label class="upload-button">
+                          <input type="file" accept="image/*" (change)="onPhotoUpload($event)" hidden>
+                          <button nz-button nzType="primary">Seleziona File</button>
+                        </label>
+                        <p class="upload-hint">Formati supportati: JPG, PNG (max 5MB)</p>
+                      </div>
+                    </div>
+                  </div>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+
+          <div nz-row>
+            <div nz-col [nzSpan]="24">
+              <nz-form-item>
+                <nz-form-label nzRequired>Profilo Professionale</nz-form-label>
+                <nz-form-control nzErrorTip="Il profilo è obbligatorio">
+                  <textarea nz-input formControlName="summary" rows="4" 
+                    placeholder="Descrivi brevemente la tua esperienza e competenze..."></textarea>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+        </div>
+      </nz-collapse-panel>
+
+      <!-- Esperienza Lavorativa -->
+      <nz-collapse-panel nzHeader="Esperienza Lavorativa">
+        <div formArrayName="experience" class="form-section">
+          <div *ngFor="let exp of experienceArray.controls; let i = index" [formGroupName]="i" class="array-item">
+            <nz-card [nzTitle]="'Esperienza ' + (i + 1)" [nzExtra]="removeExpTemplate">
+              <div nz-row [nzGutter]="16">
+                <div nz-col [nzSpan]="12">
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Azienda</nz-form-label>
+                    <nz-form-control nzErrorTip="L'azienda è obbligatoria">
+                      <input nz-input formControlName="company" placeholder="Nome Azienda" />
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzSpan]="12">
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Posizione</nz-form-label>
+                    <nz-form-control nzErrorTip="La posizione è obbligatoria">
+                      <input nz-input formControlName="position" placeholder="Ruolo ricoperto" />
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+
+              <div nz-row [nzGutter]="16">
+                <div nz-col [nzSpan]="12">
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Data Inizio</nz-form-label>
+                    <nz-form-control nzErrorTip="La data di inizio è obbligatoria">
+                      <input nz-input formControlName="startDate" placeholder="2020-01" />
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzSpan]="12">
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Data Fine</nz-form-label>
+                    <nz-form-control nzErrorTip="La data di fine è obbligatoria">
+                      <input nz-input formControlName="endDate" placeholder="Presente" />
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+
+              <div nz-row>
+                <div nz-col [nzSpan]="24">
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Descrizione</nz-form-label>
+                    <nz-form-control nzErrorTip="La descrizione è obbligatoria">
+                      <textarea nz-input formControlName="description" rows="3" 
+                        placeholder="Descrivi le tue responsabilità e risultati..."></textarea>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+
+              <ng-template #removeExpTemplate>
+                <button nz-button nzType="text" nzDanger (click)="removeExperience(i)">
+                  <span nz-icon nzType="delete"></span>
+                </button>
+              </ng-template>
+            </nz-card>
+          </div>
+
+          <button nz-button nzType="dashed" (click)="addExperience()" class="add-button">
+            <span nz-icon nzType="plus"></span>
+            Aggiungi Esperienza
+          </button>
+        </div>
+      </nz-collapse-panel>
+
+      <!-- Formazione -->
+      <nz-collapse-panel nzHeader="Formazione">
+        <div formArrayName="education" class="form-section">
+          <div *ngFor="let edu of educationArray.controls; let i = index" [formGroupName]="i" class="array-item">
+            <nz-card [nzTitle]="'Formazione ' + (i + 1)" [nzExtra]="removeEduTemplate">
+              <div nz-row [nzGutter]="16">
+                <div nz-col [nzSpan]="12">
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Istituzione</nz-form-label>
+                    <nz-form-control nzErrorTip="L'istituzione è obbligatoria">
+                      <nz-select formControlName="institution" nzPlaceHolder="Seleziona istituzione" nzShowSearch>
+                        <nz-option-group nzLabel="Università">
+                          <nz-option *ngFor="let uni of allUniversities" [nzValue]="uni" [nzLabel]="uni"></nz-option>
+                        </nz-option-group>
+                        <nz-option-group nzLabel="Scuole Superiori">
+                          <nz-option *ngFor="let school of allHighSchools" [nzValue]="school" [nzLabel]="school"></nz-option>
+                        </nz-option-group>
+                      </nz-select>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzSpan]="12">
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Titolo di Studio</nz-form-label>
+                    <nz-form-control nzErrorTip="Il titolo è obbligatorio">
+                      <input nz-input formControlName="degree" placeholder="Laurea in..." />
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+
+              <div nz-row [nzGutter]="16">
+                <div nz-col [nzSpan]="8">
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Città</nz-form-label>
+                    <nz-form-control nzErrorTip="La città è obbligatoria">
+                      <nz-select formControlName="city" nzPlaceHolder="Seleziona città" nzShowSearch>
+                        <nz-option *ngFor="let city of allCities" [nzValue]="city" [nzLabel]="city"></nz-option>
+                      </nz-select>
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzSpan]="8">
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Data Inizio</nz-form-label>
+                    <nz-form-control nzErrorTip="La data di inizio è obbligatoria">
+                      <input nz-input formControlName="startDate" placeholder="2015-09" />
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+                <div nz-col [nzSpan]="8">
+                  <nz-form-item>
+                    <nz-form-label nzRequired>Data Fine</nz-form-label>
+                    <nz-form-control nzErrorTip="La data di fine è obbligatoria">
+                      <input nz-input formControlName="endDate" placeholder="2020-07" />
+                    </nz-form-control>
+                  </nz-form-item>
+                </div>
+              </div>
+
+              <ng-template #removeEduTemplate>
+                <button nz-button nzType="text" nzDanger (click)="removeEducation(i)">
+                  <span nz-icon nzType="delete"></span>
+                </button>
+              </ng-template>
+            </nz-card>
+          </div>
+
+          <button nz-button nzType="dashed" (click)="addEducation()" class="add-button">
+            <span nz-icon nzType="plus"></span>
+            Aggiungi Formazione
+          </button>
+        </div>
+      </nz-collapse-panel>
+
+      <!-- Competenze -->
+      <nz-collapse-panel nzHeader="Competenze">
+        <div formArrayName="skills" class="form-section">
+          <div nz-row [nzGutter]="[16, 16]">
+            <div nz-col [nzSpan]="8" *ngFor="let skill of skillsArray.controls; let i = index">
+              <nz-form-item>
+                <nz-form-control nzErrorTip="La competenza è obbligatoria">
+                  <nz-input-group [nzSuffix]="suffixTemplate">
+                    <input nz-input 
+                      [formControlName]="i" 
+                      placeholder="Competenza"
+                      nz-autocomplete
+                      [nzAutocomplete]="skillAutocomplete"
+                      (input)="onSkillSearch($any($event.target).value)" />
+                  </nz-input-group>
+                  <nz-autocomplete #skillAutocomplete>
+                    <nz-auto-option *ngFor="let skillOption of skillOptions" [nzValue]="skillOption">
+                      {{ skillOption }}
+                    </nz-auto-option>
+                  </nz-autocomplete>
+                  <ng-template #suffixTemplate>
+                    <button nz-button nzType="text" nzSize="small" nzDanger (click)="removeSkill(i)">
+                      <span nz-icon nzType="close"></span>
+                    </button>
+                  </ng-template>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+
+          <button nz-button nzType="dashed" (click)="addSkill()" class="add-button">
+            <span nz-icon nzType="plus"></span>
+            Aggiungi Competenza
+          </button>
+        </div>
+      </nz-collapse-panel>
+
+      <!-- Lingue -->
+      <nz-collapse-panel nzHeader="Lingue">
+        <div formArrayName="languages" class="form-section">
+          <div nz-row [nzGutter]="[16, 16]">
+            <div nz-col [nzSpan]="12" *ngFor="let lang of languagesArray.controls; let i = index" [formGroupName]="i">
+              <nz-card [nzTitle]="'Lingua ' + (i + 1)" [nzExtra]="removeLangTemplate" nzSize="small">
+                <div nz-row [nzGutter]="8">
+                  <div nz-col [nzSpan]="12">
+                    <nz-form-item>
+                      <nz-form-label nzRequired>Lingua</nz-form-label>
+                      <nz-form-control nzErrorTip="La lingua è obbligatoria">
+                        <nz-select formControlName="language" nzPlaceHolder="Seleziona lingua" nzShowSearch>
+                          <nz-option *ngFor="let lang of languageOptions" [nzValue]="lang" [nzLabel]="lang"></nz-option>
+                        </nz-select>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+                  <div nz-col [nzSpan]="12">
+                    <nz-form-item>
+                      <nz-form-label nzRequired>Livello</nz-form-label>
+                      <nz-form-control nzErrorTip="Il livello è obbligatorio">
+                        <nz-select formControlName="level" nzPlaceHolder="Seleziona livello">
+                          <nz-option *ngFor="let level of languageLevelOptions" [nzValue]="level" [nzLabel]="level"></nz-option>
+                        </nz-select>
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+                </div>
+
+                <ng-template #removeLangTemplate>
+                  <button nz-button nzType="text" nzSize="small" nzDanger (click)="removeLanguage(i)">
+                    <span nz-icon nzType="delete"></span>
+                  </button>
+                </ng-template>
+              </nz-card>
+            </div>
+          </div>
+
+          <button nz-button nzType="dashed" (click)="addLanguage()" class="add-button">
+            <span nz-icon nzType="plus"></span>
+            Aggiungi Lingua
+          </button>
+        </div>
+      </nz-collapse-panel>
+
+    </nz-collapse>
+  </form>
+</div>

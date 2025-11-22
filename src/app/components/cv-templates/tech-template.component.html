@@ -1,0 +1,111 @@
+<div class="tech-cv">
+  <div class="cv-header">
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-buttons">
+          <span class="btn red"></span>
+          <span class="btn yellow"></span>
+          <span class="btn green"></span>
+        </div>
+        <div class="terminal-title">{{ cvData.personalInfo.name.toLowerCase().replace(' ', '_') }}.dev</div>
+      </div>
+      <div class="terminal-content">
+        <div class="terminal-line">
+          <span class="prompt">$</span>
+          <span class="command">whoami</span>
+        </div>
+        <div class="output">{{ cvData.personalInfo.name }}</div>
+        <div class="terminal-line">
+          <span class="prompt">$</span>
+          <span class="command">cat role.txt</span>
+        </div>
+        <div class="output">{{ cvData.personalInfo.title }}</div>
+        <div class="terminal-line">
+          <span class="prompt">$</span>
+          <span class="command">echo $CONTACT</span>
+        </div>
+        <div class="output">{{ cvData.personalInfo.email }} | {{ cvData.personalInfo.phone }} | {{ cvData.personalInfo.location }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cv-body">
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-lang">README.md</span>
+      </div>
+      <div class="code-content">
+        <h2># About Me</h2>
+        <p>{{ cvData.personalInfo.summary }}</p>
+      </div>
+    </div>
+
+    <div class="content-grid">
+      <div class="left-panel">
+        <div class="code-section">
+          <div class="code-header">
+            <span class="code-lang">skills.json</span>
+          </div>
+          <div class="code-content">
+            <div class="json-structure">
+              <div class="json-line">&#123;</div>
+              <div class="json-line indent">"technologies": [</div>
+              <div class="skill-item" *ngFor="let skill of cvData.skills; let last = last">
+                <span class="json-line indent2">"{{ skill }}"{{ !last ? ',' : '' }}</span>
+              </div>
+              <div class="json-line indent">],</div>
+              <div class="json-line indent">"languages": &#123;</div>
+              <div class="lang-item" *ngFor="let lang of cvData.languages; let last = last">
+                <span class="json-line indent2">"{{ lang.language }}": "{{ lang.level }}"{{ !last ? ',' : '' }}</span>
+              </div>
+              <div class="json-line indent">&#125;</div>
+              <div class="json-line">&#125;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <div class="code-section">
+          <div class="code-header">
+            <span class="code-lang">experience.js</span>
+          </div>
+          <div class="code-content">
+            <div class="experience-code">
+              <div class="code-line">const experience = [</div>
+              <div class="exp-item" *ngFor="let exp of cvData.experience; let last = last">
+                <div class="code-line indent">&#123;</div>
+                <div class="code-line indent2">company: "{{ exp.company }}",</div>
+                <div class="code-line indent2">role: "{{ exp.position }}",</div>
+                <div class="code-line indent2">period: "{{ exp.startDate }} - {{ exp.endDate }}",</div>
+                <div class="code-line indent2">description: "{{ exp.description }}"</div>
+                <div class="code-line indent">&#125;{{ !last ? ',' : '' }}</div>
+              </div>
+              <div class="code-line">];</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-section">
+          <div class="code-header">
+            <span class="code-lang">education.py</span>
+          </div>
+          <div class="code-content">
+            <div class="education-code">
+              <div class="code-line">education = [</div>
+              <div class="edu-item" *ngFor="let edu of cvData.education; let last = last">
+                <div class="code-line indent">&#123;</div>
+                <div class="code-line indent2">'degree': '{{ edu.degree }}',</div>
+                <div class="code-line indent2">'institution': '{{ edu.institution }}',</div>
+                <div class="code-line indent2">'city': '{{ edu.city }}',</div>
+                <div class="code-line indent2">'period': '{{ edu.startDate }} - {{ edu.endDate }}'</div>
+                <div class="code-line indent">&#125;{{ !last ? ',' : '' }}</div>
+              </div>
+              <div class="code-line">]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

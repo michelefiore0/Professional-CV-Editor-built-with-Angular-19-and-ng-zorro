@@ -1,0 +1,62 @@
+<div class="modern-cv">
+  <div class="cv-header">
+    <div class="photo-section" *ngIf="cvData.personalInfo.photo">
+      <img [src]="cvData.personalInfo.photo" [alt]="cvData.personalInfo.name" class="profile-photo">
+    </div>
+    <div class="personal-info">
+      <h1>{{ cvData.personalInfo.name }}</h1>
+      <h2>{{ cvData.personalInfo.title }}</h2>
+      <div class="contact-info">
+        <span>{{ cvData.personalInfo.email }}</span>
+        <span>{{ cvData.personalInfo.phone }}</span>
+        <span>{{ cvData.personalInfo.location }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cv-content">
+    <div class="left-column">
+      <section class="summary">
+        <h3>Profilo</h3>
+        <p>{{ cvData.personalInfo.summary }}</p>
+      </section>
+
+      <section class="skills">
+        <h3>Competenze</h3>
+        <div class="skill-tags">
+          <span class="skill-tag" *ngFor="let skill of cvData.skills">{{ skill }}</span>
+        </div>
+      </section>
+
+      <section class="languages">
+        <h3>Lingue</h3>
+        <div class="language-item" *ngFor="let lang of cvData.languages">
+          <span class="language">{{ lang.language }}</span>
+          <span class="level">{{ lang.level }}</span>
+        </div>
+      </section>
+    </div>
+
+    <div class="right-column">
+      <section class="experience">
+        <h3>Esperienza Lavorativa</h3>
+        <div class="experience-item" *ngFor="let exp of cvData.experience">
+          <div class="period">{{ exp.startDate }} - {{ exp.endDate }}</div>
+          <h4>{{ exp.position }}</h4>
+          <h5>{{ exp.company }}</h5>
+          <p>{{ exp.description }}</p>
+        </div>
+      </section>
+
+      <section class="education">
+        <h3>Formazione</h3>
+        <div class="education-item" *ngFor="let edu of cvData.education">
+          <div class="period">{{ edu.startDate }} - {{ edu.endDate }}</div>
+          <h4>{{ edu.degree }}</h4>
+          <h5>{{ edu.institution }}</h5>
+          <div class="edu-city">{{ edu.city }}</div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

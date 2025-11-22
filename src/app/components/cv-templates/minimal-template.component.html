@@ -1,0 +1,61 @@
+<div class="minimal-cv">
+  <header class="cv-header">
+    <h1>{{ cvData.personalInfo.name }}</h1>
+    <div class="subtitle">{{ cvData.personalInfo.title }}</div>
+    <div class="contact-line">
+      {{ cvData.personalInfo.email }} • {{ cvData.personalInfo.phone }} • {{ cvData.personalInfo.location }}
+    </div>
+  </header>
+
+  <main class="cv-main">
+    <section class="section">
+      <h2>Summary</h2>
+      <p>{{ cvData.personalInfo.summary }}</p>
+    </section>
+
+    <section class="section">
+      <h2>Experience</h2>
+      <div class="experience-list">
+        <div class="item" *ngFor="let exp of cvData.experience">
+          <div class="item-header">
+            <span class="title">{{ exp.position }}</span>
+            <span class="period">{{ exp.startDate }} – {{ exp.endDate }}</span>
+          </div>
+          <div class="subtitle">{{ exp.company }}</div>
+          <p class="description">{{ exp.description }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Education</h2>
+      <div class="education-list">
+        <div class="item" *ngFor="let edu of cvData.education">
+          <div class="item-header">
+            <span class="title">{{ edu.degree }}</span>
+            <span class="period">{{ edu.startDate }} – {{ edu.endDate }}</span>
+          </div>
+          <div class="subtitle">{{ edu.institution }}</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="bottom-sections">
+      <section class="section skills-section">
+        <h2>Skills</h2>
+        <div class="skills-text">
+          {{ cvData.skills.join(' • ') }}
+        </div>
+      </section>
+
+      <section class="section languages-section">
+        <h2>Languages</h2>
+        <div class="languages-text">
+          <span *ngFor="let lang of cvData.languages; let last = last">
+            {{ lang.language }} ({{ lang.level }})<span *ngIf="!last"> • </span>
+          </span>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>

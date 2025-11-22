@@ -1,0 +1,71 @@
+<div class="template-selector">
+  <h2>Scegli un Template</h2>
+  <p>Clicca su un template per vedere l'anteprima completa</p>
+  
+  <div nz-row [nzGutter]="[16, 16]">
+    <div nz-col [nzSpan]="6" *ngFor="let template of templates">
+      <nz-card 
+        class="template-card"
+        [nzCover]="coverTemplate"
+        [nzActions]="[actionPreview]"
+        nzHoverable
+        (click)="previewTemplate(template)">
+        
+        <ng-template #coverTemplate>
+          <div class="template-preview">
+            <div class="preview-placeholder">
+              <div class="preview-header" [class]="'preview-' + template.category">
+                <div class="preview-photo" *ngIf="template.hasPhoto"></div>
+                <div class="preview-text">
+                  <div class="preview-name"></div>
+                  <div class="preview-title"></div>
+                </div>
+              </div>
+              <div class="preview-content">
+                <div class="preview-section" *ngFor="let i of [1,2,3]">
+                  <div class="preview-line"></div>
+                  <div class="preview-line short"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        
+        <nz-card-meta 
+          [nzTitle]="template.name" 
+          [nzDescription]="template.description">
+        </nz-card-meta>
+        
+        <div class="template-category">
+          <nz-tag [nzColor]="getCategoryColor(template.category)">
+            {{ template.category }}
+          </nz-tag>
+          <nz-tag *ngIf="template.hasPhoto" nzColor="green">
+            Con Foto
+          </nz-tag>
+          <nz-tag *ngIf="!template.hasPhoto" nzColor="orange">
+            Senza Foto
+          </nz-tag>
+        </div>
+        
+        <ng-template #actionPreview>
+          <button 
+            nz-button 
+            nzType="primary" 
+            (click)="previewTemplate(template); $event.stopPropagation()">
+            Anteprima
+          </button>
+        </ng-template>
+      </nz-card>
+    </div>
+  </div>
+
+  <app-template-preview
+    *ngIf="previewTemplate && sampleData"
+    [template]="previewTemplate"
+    [cvData]="sampleData"
+    [isVisible]="showPreview"
+    (confirmed)="onPreviewConfirmed($event)"
+    (cancelled)="onPreviewCancelled()">
+  </app-template-preview>
+</div>

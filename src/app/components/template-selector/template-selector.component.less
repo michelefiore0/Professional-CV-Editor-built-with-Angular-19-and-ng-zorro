@@ -1,0 +1,113 @@
+.template-selector {
+  padding: 24px;
+  
+  h2 {
+    margin-bottom: 8px;
+    color: #262626;
+  }
+  
+  p {
+    margin-bottom: 24px;
+    color: #8c8c8c;
+  }
+}
+
+.template-card {
+  height: 100%;
+  transition: all 0.3s;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.template-preview {
+  height: 200px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  
+  .preview-placeholder {
+    width: 90%;
+    height: 90%;
+    background: white;
+    border-radius: 4px;
+    padding: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    
+    .preview-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      padding: 6px;
+      border-radius: 3px;
+      
+      &.preview-modern {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      
+      &.preview-classic {
+        background: #2c3e50;
+      }
+      
+      &.preview-creative {
+        background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+      }
+      
+      &.preview-minimal {
+        background: #f8f9fa;
+        border-bottom: 2px solid #333;
+      }
+      
+      .preview-photo {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.8);
+      }
+      
+      .preview-text {
+        flex: 1;
+        
+        .preview-name {
+          height: 6px;
+          background: rgba(255,255,255,0.9);
+          border-radius: 2px;
+          margin-bottom: 3px;
+        }
+        
+        .preview-title {
+          height: 4px;
+          background: rgba(255,255,255,0.7);
+          border-radius: 2px;
+          width: 70%;
+        }
+      }
+    }
+    
+    .preview-content {
+      .preview-section {
+        margin-bottom: 6px;
+        
+        .preview-line {
+          height: 3px;
+          background: #e0e0e0;
+          border-radius: 1px;
+          margin-bottom: 2px;
+          
+          &.short {
+            width: 60%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.template-category {
+  margin-top: 12px;
+}
