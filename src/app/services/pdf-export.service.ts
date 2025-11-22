@@ -17,41 +17,38 @@ export class PdfExportService {
       // Clona l'elemento per non disturbare la visualizzazione
       const clonedElement = originalElement.cloneNode(true) as HTMLElement;
       
-      // Prepara il clone per la generazione PDF
+      // Prepara il clone per la generazione PDF - SEMPRE 297mm
       clonedElement.style.position = 'fixed';
       clonedElement.style.left = '-9999px';
       clonedElement.style.top = '0';
       clonedElement.style.width = '210mm';
-      clonedElement.style.minHeight = '297mm';
-      clonedElement.style.height = 'auto';
+      clonedElement.style.height = '297mm';
+      clonedElement.style.maxHeight = '297mm';
       clonedElement.style.transform = 'none';
       clonedElement.style.margin = '0';
       clonedElement.style.padding = '0';
       clonedElement.style.boxShadow = 'none';
+      clonedElement.style.overflow = 'hidden';
       clonedElement.style.zIndex = '-1';
       
       // Aggiungi al DOM temporaneamente
       document.body.appendChild(clonedElement);
       
       // Attendi rendering completo
-      await new Promise(resolve => setTimeout(resolve, 300));
+      await new Promise(resolve => setTimeout(resolve, 200));
 
-      // Ottieni altezza reale del contenuto
-      const contentHeight = clonedElement.scrollHeight;
-      const contentWidth = 794; // 210mm in pixels
-      
-      // Genera canvas dell'intero contenuto
+      // Genera canvas SEMPRE 210x297mm (single page)
       const canvas = await html2canvas(clonedElement, {
         scale: 2,
         useCORS: true,
         allowTaint: true,
         backgroundColor: '#ffffff',
-        width: contentWidth,
-        height: contentHeight,
+        width: 794,  // 210mm
+        height: 1123, // 297mm
         scrollX: 0,
         scrollY: 0,
-        windowWidth: contentWidth,
-        windowHeight: contentHeight
+        windowWidth: 794,
+        windowHeight: 1123
       });
       
       // Rimuovi il clone
@@ -59,28 +56,12 @@ export class PdfExportService {
       
       const imgData = canvas.toDataURL('image/jpeg', 0.95);
       
-      // Crea PDF A4 multi-pagina
+      // Crea PDF A4 single-page
       const pdf = new jsPDF('p', 'mm', 'a4');
-      const pdfWidth = 210;
-      const pdfHeight = 297;
-      
-      const imgWidth = canvas.width;
-      const imgHeight = canvas.height;
-      
-      // Calcola quante pagine servono
-      const pageHeightInPixels = (pdfHeight / pdfWidth) * imgWidth;
-      const totalPages = Math.ceil(imgHeight / pageHeightInPixels);
-      
-      // Aggiungi ogni pagina
-      for (let page = 0; page < totalPages; page++) {
-        if (page > 0) pdf.addPage();
-        
-        const yOffset = -page * pageHeightInPixels * (pdfHeight / pageHeightInPixels);
-        const imgHeightInPdf = (imgHeight * pdfWidth) / imgWidth;
-        
-        pdf.addImage(imgData, 'JPEG', 0, yOffset, pdfWidth, imgHeightInPdf);
-      }
+      pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297);
       pdf.save(`${fileName}.pdf`);
+      
+      await new Promise(resolve => setTimeout(resolve, 100));
       
     } catch (error) {
       console.error('Errore durante l\'esportazione PDF:', error);
