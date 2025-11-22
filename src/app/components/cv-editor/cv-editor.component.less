@@ -170,9 +170,16 @@ nz-collapse {
         color: #666;
       }
 
+      .upload-buttons {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        margin: 16px 0;
+        flex-wrap: wrap;
+      }
+      
       .upload-button {
         display: inline-block;
-        margin: 16px 0;
       }
 
       .upload-hint {
@@ -291,6 +298,15 @@ nz-collapse {
       .dropzone-content {
         .upload-icon {
           font-size: 28px;
+        }
+        
+        .upload-buttons {
+          flex-direction: column;
+          gap: 8px;
+          
+          button {
+            width: 100%;
+          }
         }
         
         p {
