@@ -8,27 +8,27 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  font-size: 10px;
+  font-size: 12px;
   overflow: hidden;
 }
 
 .cv-header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 15px 25px;
+  padding: 18px 25px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 18px;
   flex-shrink: 0;
   
   .photo-section {
     .profile-photo {
-      width: 70px;
-      height: 70px;
+      width: 85px;
+      height: 85px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid rgba(255, 255, 255, 0.3);
+      border: 4px solid rgba(255, 255, 255, 0.3);
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
   }
@@ -37,14 +37,14 @@
     text-align: center;
 
     h1 {
-      font-size: 1.8em;
-      margin: 0 0 3px 0;
-      font-weight: 300;
+      font-size: 2.2em;
+      margin: 0 0 4px 0;
+      font-weight: 500;
     }
 
     h2 {
-      font-size: 1.1em;
-      margin: 0 0 6px 0;
+      font-size: 1.3em;
+      margin: 0 0 7px 0;
       opacity: 0.9;
       font-weight: 400;
     }
@@ -52,12 +52,12 @@
     .contact-info {
       display: flex;
       justify-content: center;
-      gap: 15px;
+      gap: 16px;
       flex-wrap: wrap;
 
       span {
-        opacity: 0.8;
-        font-size: 0.9em;
+        opacity: 0.9;
+        font-size: 1em;
       }
     }
   }
@@ -71,39 +71,41 @@
 .left-column {
   flex: 1;
   background: #f8f9fa;
-  padding: 15px;
+  padding: 16px;
   overflow-y: auto;
 
   section {
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
 
   h3 {
     color: #667eea;
-    font-size: 1em;
-    margin-bottom: 6px;
+    font-size: 1.15em;
+    margin-bottom: 7px;
     text-transform: uppercase;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.4px;
+    font-weight: 600;
   }
 }
 
 .right-column {
   flex: 2;
-  padding: 15px 20px;
+  padding: 16px 20px;
   overflow-y: auto;
 
   section {
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
 
   h3 {
     color: #333;
-    font-size: 1em;
-    margin-bottom: 6px;
+    font-size: 1.15em;
+    margin-bottom: 7px;
     text-transform: uppercase;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.4px;
     border-bottom: 2px solid #667eea;
-    padding-bottom: 2px;
+    padding-bottom: 3px;
+    font-weight: 600;
   }
 }
 
@@ -116,9 +118,9 @@
   .skill-tag {
     background: #667eea;
     color: white;
-    padding: 5px 8px;
+    padding: 7px 10px;
     border-radius: 8px;
-    font-size: 0.85em;
+    font-size: 0.95em;
     text-align: center;
     font-weight: 500;
     box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
@@ -127,8 +129,8 @@
 
 .language-item {
   background: white;
-  padding: 8px 10px;
-  margin-bottom: 6px;
+  padding: 9px 11px;
+  margin-bottom: 7px;
   border-radius: 6px;
   border-left: 3px solid #667eea;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -139,68 +141,69 @@
   .language {
     font-weight: 600;
     color: #333;
-    font-size: 0.9em;
+    font-size: 1em;
   }
 
   .level {
     color: #667eea;
-    font-size: 0.8em;
+    font-size: 0.9em;
     font-weight: 500;
     background: rgba(102, 126, 234, 0.1);
-    padding: 3px 6px;
+    padding: 4px 8px;
     border-radius: 8px;
   }
 }
 
 .experience-item, .education-item {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   position: relative;
-  padding-left: 12px;
+  padding-left: 14px;
 
   &::before {
     content: '';
     position: absolute;
     left: 0;
-    top: 4px;
-    width: 6px;
-    height: 6px;
+    top: 5px;
+    width: 7px;
+    height: 7px;
     background: #667eea;
     border-radius: 50%;
   }
 
   .period {
     color: #667eea;
-    font-size: 0.85em;
-    font-weight: 500;
-    margin-bottom: 3px;
+    font-size: 0.95em;
+    font-weight: 600;
+    margin-bottom: 4px;
   }
 
   h4 {
-    margin: 0 0 2px 0;
+    margin: 0 0 3px 0;
     color: #333;
-    font-size: 0.95em;
-    line-height: 1.2;
+    font-size: 1.05em;
+    line-height: 1.35;
+    font-weight: 600;
   }
 
   h5 {
-    margin: 0 0 2px 0;
+    margin: 0 0 3px 0;
     color: #666;
     font-weight: 400;
     font-style: italic;
-    font-size: 0.85em;
+    font-size: 0.95em;
   }
 
   .edu-city {
     margin: 0 0 5px 0;
     color: #999;
-    font-size: 0.85em;
+    font-size: 0.95em;
   }
 
   p {
     margin: 0;
     color: #555;
-    line-height: 1.25;
-    font-size: 0.85em;
+    line-height: 1.4;
+    font-size: 0.95em;
   }
 }
 
