@@ -6,14 +6,14 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzCollapseModule } from 'ng-zorro-antd/collapse';
-import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzTagModule } from 'ng-zorro-antd/tag';
 import { CVData } from '../../models/cv-template.model';
 import { AutocompleteService } from '../../services/autocomplete.service';
 import { PhotoUploadService } from '../../services/photo-upload.service';
-import { Observable, of } from 'rxjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
@@ -27,10 +27,11 @@ import { NzMessageService } from 'ng-zorro-antd/message';
     NzButtonModule,
     NzCardModule,
     NzIconModule,
-    NzCollapseModule,
-    NzUploadModule,
+    NzStepsModule,
     NzAutocompleteModule,
-    NzSelectModule
+    NzSelectModule,
+    NzDividerModule,
+    NzTagModule
   ],
   templateUrl: './cv-editor.component.html',
   styleUrls: ['./cv-editor.component.less']
@@ -42,6 +43,7 @@ export class CVEditorComponent implements OnInit {
   @Output() backToPreview = new EventEmitter<void>();
 
   cvForm!: FormGroup;
+  currentStep = 0;
   
   // Options for selects
   allCities: string[] = [];
@@ -257,10 +259,45 @@ export class CVEditorComponent implements OnInit {
     this.languagesArray.removeAt(index);
   }
 
+  nextStep() {
+    if (this.currentStep < 4) {
+      this.currentStep++;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  prevStep() {
+    if (this.currentStep > 0) {
+      this.currentStep--;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  isStepValid(step: number): boolean {
+    switch (step) {
+      case 0:
+        const personalInfo = this.cvForm.get('personalInfo');
+        return personalInfo?.valid || false;
+      case 1:
+        return this.experienceArray.length > 0 && this.experienceArray.valid;
+      case 2:
+        return this.educationArray.length > 0 && this.educationArray.valid;
+      case 3:
+        return this.skillsArray.length > 0 && this.skillsArray.valid;
+      case 4:
+        return this.languagesArray.length > 0 && this.languagesArray.valid;
+      default:
+        return false;
+    }
+  }
+
   onSave() {
     if (this.cvForm.valid) {
       const formValue = this.cvForm.value;
       this.dataChanged.emit(formValue);
+      this.message.success('CV salvato con successo!');
+    } else {
+      this.message.error('Completa tutti i campi obbligatori');
     }
   }
 
