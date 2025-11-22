@@ -43,22 +43,20 @@
 #cv-template {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
-  max-width: 210mm;
+  max-width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
-  overflow: hidden;
   
-  // Il template A4 originale
   > * {
-    width: 210mm;
-    min-height: 297mm;
+    width: 100%;
+    max-width: 900px;
+    min-height: auto;
     background: white;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     margin: 0 auto;
     box-sizing: border-box;
-    flex-shrink: 0;
   }
 }
 
@@ -82,13 +80,8 @@
   }
 
   #cv-template {
-    width: calc(210mm * 0.85);
-    max-width: 100%;
-    
     > * {
-      transform: scale(0.85);
-      transform-origin: top center;
-      margin-bottom: -15%;
+      max-width: 750px;
     }
   }
 }
@@ -115,14 +108,8 @@
   }
 
   #cv-template {
-    width: calc(210mm * 0.48);
-    max-width: 100%;
-    padding: 0;
-    
     > * {
-      transform: scale(0.48);
-      transform-origin: top center;
-      margin-bottom: -52%;
+      max-width: 100%;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
   }
@@ -150,13 +137,8 @@
   }
 
   #cv-template {
-    width: calc(210mm * 0.42);
-    max-width: 100%;
-    
     > * {
-      transform: scale(0.42);
-      transform-origin: top center;
-      margin-bottom: -58%;
+      max-width: 100%;
     }
   }
 }
@@ -183,13 +165,8 @@
   }
 
   #cv-template {
-    width: calc(210mm * 0.40);
-    max-width: 100%;
-    
     > * {
-      transform: scale(0.40);
-      transform-origin: top center;
-      margin-bottom: -60%;
+      max-width: 100%;
     }
   }
 }
@@ -216,13 +193,8 @@
   }
 
   #cv-template {
-    width: calc(210mm * 0.36);
-    max-width: 100%;
-    
     > * {
-      transform: scale(0.36);
-      transform-origin: top center;
-      margin-bottom: -64%;
+      max-width: 100%;
     }
   }
 }
@@ -249,13 +221,8 @@
   }
 
   #cv-template {
-    width: calc(210mm * 0.33);
-    max-width: 100%;
-    
     > * {
-      transform: scale(0.33);
-      transform-origin: top center;
-      margin-bottom: -67%;
+      max-width: 100%;
     }
   }
 }
