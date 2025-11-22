@@ -40,6 +40,17 @@ export class TemplatePreviewComponent {
   @Output() confirmed = new EventEmitter<CVTemplate>();
   @Output() cancelled = new EventEmitter<void>();
 
+  get modalWidth(): string | number {
+    if (typeof window !== 'undefined') {
+      const width = window.innerWidth;
+      if (width <= 430) return '98%';
+      if (width <= 576) return '95%';
+      if (width <= 768) return '90%';
+      return 900;
+    }
+    return 900;
+  }
+
   onConfirm() {
     this.confirmed.emit(this.template);
   }

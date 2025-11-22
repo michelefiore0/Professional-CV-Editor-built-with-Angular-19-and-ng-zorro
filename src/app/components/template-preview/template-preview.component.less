@@ -7,6 +7,20 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  box-sizing: border-box;
+  
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
 }
 
 .preview-wrapper {
@@ -14,13 +28,167 @@
   transform-origin: top center;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   border-radius: 4px;
-  margin-bottom: 20px;
+  margin: 0 auto 20px;
   width: 210mm;
   height: 297mm;
+  background: white;
 }
 
 .modal-footer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  
+  button {
+    flex: 1 1 auto;
+    min-width: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    box-sizing: border-box;
+  }
+}
+
+// Breakpoint 1024px - Tablet landscape
+@media (max-width: 1024px) {
+  .template-preview-container {
+    padding: 16px;
+    height: 75vh;
+  }
+  
+  .preview-wrapper {
+    transform: scale(0.55);
+    margin-bottom: -45%;
+  }
+  
+  .modal-footer {
+    gap: 10px;
+    
+    button {
+      min-width: 120px;
+      height: 38px;
+      font-size: 13px;
+    }
+  }
+}
+
+// Breakpoint 768px - Tablet portrait
+@media (max-width: 768px) {
+  .template-preview-container {
+    padding: 12px;
+    height: 70vh;
+  }
+  
+  .preview-wrapper {
+    transform: scale(0.48);
+    margin-bottom: -52%;
+  }
+  
+  .modal-footer {
+    flex-direction: column;
+    gap: 10px;
+    
+    button {
+      width: 100%;
+      min-width: unset;
+      height: 42px;
+      font-size: 14px;
+    }
+  }
+}
+
+// Breakpoint 480px - Mobile large
+@media (max-width: 480px) {
+  .template-preview-container {
+    padding: 8px;
+    height: 65vh;
+  }
+  
+  .preview-wrapper {
+    transform: scale(0.42);
+    margin-bottom: -58%;
+  }
+  
+  .modal-footer {
+    gap: 8px;
+    
+    button {
+      height: 40px;
+      font-size: 13px;
+    }
+  }
+}
+
+// Breakpoint 430px - iPhone 14 Pro Max
+@media (max-width: 430px) {
+  .template-preview-container {
+    padding: 6px;
+    height: 62vh;
+  }
+  
+  .preview-wrapper {
+    transform: scale(0.40);
+    margin-bottom: -60%;
+  }
+  
+  .modal-footer {
+    gap: 8px;
+    
+    button {
+      height: 38px;
+      font-size: 12px;
+      padding: 0 12px;
+    }
+  }
+}
+
+// Breakpoint 390px - iPhone 12/13/14
+@media (max-width: 390px) {
+  .template-preview-container {
+    padding: 4px;
+    height: 60vh;
+  }
+  
+  .preview-wrapper {
+    transform: scale(0.36);
+    margin-bottom: -64%;
+  }
+  
+  .modal-footer {
+    gap: 6px;
+    
+    button {
+      height: 36px;
+      font-size: 11px;
+      padding: 0 10px;
+    }
+  }
+}
+
+// Breakpoint 360px - Small Android
+@media (max-width: 360px) {
+  .template-preview-container {
+    padding: 2px;
+    height: 58vh;
+  }
+  
+  .preview-wrapper {
+    transform: scale(0.33);
+    margin-bottom: -67%;
+  }
+  
+  .modal-footer {
+    gap: 6px;
+    
+    button {
+      height: 34px;
+      font-size: 10px;
+      padding: 0 8px;
+    }
+  }
 }

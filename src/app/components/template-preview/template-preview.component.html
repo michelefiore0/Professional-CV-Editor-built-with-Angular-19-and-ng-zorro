@@ -1,8 +1,9 @@
 <nz-modal
   [(nzVisible)]="isVisible"
   [nzTitle]="'Anteprima: ' + template.name"
-  [nzWidth]="900"
+  [nzWidth]="modalWidth"
   [nzFooter]="modalFooter"
+  [nzBodyStyle]="{ padding: '0', overflow: 'hidden' }"
   (nzOnCancel)="onCancel()">
   
   <div class="template-preview-container">

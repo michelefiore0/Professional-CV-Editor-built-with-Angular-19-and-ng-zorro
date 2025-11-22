@@ -93,6 +93,97 @@ body {
   }
 }
 
+/* CV Preview Responsive */
+.cv-preview {
+  width: 100%;
+  margin: 20px auto;
+  overflow-x: hidden;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cv-actions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 100%;
+}
+
+#cv-template {
+  width: 210mm;
+  margin: 0 auto;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform-origin: top center;
+}
+
+/* Tablet Responsive */
+@media (max-width: 1024px) {
+  #cv-template {
+    transform: scale(0.75);
+    margin-bottom: -25%;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) and (min-width: 481px) {
+  .cv-preview {
+    margin: 12px 0;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .cv-actions {
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding: 0 12px;
+    
+    button {
+      width: 100%;
+      height: 44px;
+      font-size: 15px;
+    }
+  }
+  
+  #cv-template {
+    transform: scale(0.54);
+    transform-origin: top center;
+    margin-bottom: -46%;
+  }
+}
+
+@media (max-width: 480px) {
+  .cv-preview {
+    margin: 12px 0;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .cv-actions {
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding: 0 8px;
+    
+    button {
+      width: 100%;
+      height: 48px;
+      font-size: 16px;
+    }
+  }
+  
+  #cv-template {
+    transform: scale(0.48);
+    transform-origin: top center;
+    margin-bottom: -52%;
+  }
+}
+
 /* PDF Export Optimization */
 @media print {
   #cv-template {
@@ -111,35 +202,5 @@ body {
   
   .cv-actions {
     display: none !important;
-  }
-}
-
-/* PDF Generation Class */
-.pdf-generating {
-  #cv-template {
-    transform: none !important;
-    width: 794px !important; /* A4 width in pixels */
-    min-height: auto !important;
-    margin: 0 !important;
-    padding: 60px !important; /* 20mm in pixels */
-    background: white !important;
-    box-shadow: none !important;
-    font-size: 12px !important;
-    line-height: 1.4 !important;
-    overflow: visible !important;
-    position: static !important;
-  }
-  
-  /* Ensure all template content is visible */
-  .modern-cv, .classic-cv, .creative-cv, .minimal-cv,
-  .professional-template, .tech-template, .executive-template, .simple-template {
-    width: 794px !important;
-    max-width: none !important;
-    min-height: auto !important;
-    margin: 0 !important;
-    padding: 60px !important;
-    box-shadow: none !important;
-    border: none !important;
-    overflow: visible !important;
   }
 }

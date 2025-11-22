@@ -1,0 +1,261 @@
+// CV Preview Responsive Styles
+// Sistema flexbox completamente scalabile per tutti i breakpoint
+
+.cv-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.cv-actions {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 12px;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: 0;
+
+  ::ng-deep button {
+    flex: 1 1 auto !important;
+    min-width: 150px !important;
+    max-width: 280px !important;
+    height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    box-sizing: border-box !important;
+    padding: 0 20px !important;
+    font-size: 15px !important;
+  }
+}
+
+#cv-template {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 210mm;
+  margin: 0 auto;
+  box-sizing: border-box;
+  overflow: hidden;
+  
+  // Il template A4 originale
+  > * {
+    width: 210mm;
+    min-height: 297mm;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin: 0 auto;
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+}
+
+// Breakpoint 1024px - Tablet landscape
+@media (max-width: 1024px) {
+  .cv-preview {
+    padding: 16px;
+  }
+
+  .cv-actions {
+    gap: 10px;
+    margin-bottom: 20px;
+
+    ::ng-deep button {
+      min-width: 140px !important;
+      max-width: 250px !important;
+      height: 42px !important;
+      padding: 0 18px !important;
+      font-size: 14px !important;
+    }
+  }
+
+  #cv-template {
+    width: calc(210mm * 0.85);
+    max-width: 100%;
+    
+    > * {
+      transform: scale(0.85);
+      transform-origin: top center;
+      margin-bottom: -15%;
+    }
+  }
+}
+
+// Breakpoint 768px - Tablet portrait
+@media (max-width: 768px) {
+  .cv-preview {
+    padding: 12px;
+  }
+
+  .cv-actions {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+
+    ::ng-deep button {
+      width: 100% !important;
+      min-width: unset !important;
+      max-width: unset !important;
+      height: 48px !important;
+      padding: 0 16px !important;
+      font-size: 15px !important;
+    }
+  }
+
+  #cv-template {
+    width: calc(210mm * 0.48);
+    max-width: 100%;
+    padding: 0;
+    
+    > * {
+      transform: scale(0.48);
+      transform-origin: top center;
+      margin-bottom: -52%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+// Breakpoint 480px - Mobile large
+@media (max-width: 480px) {
+  .cv-preview {
+    padding: 8px;
+  }
+
+  .cv-actions {
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+
+    ::ng-deep button {
+      width: 100% !important;
+      min-width: unset !important;
+      max-width: unset !important;
+      height: 46px !important;
+      padding: 0 16px !important;
+      font-size: 14px !important;
+    }
+  }
+
+  #cv-template {
+    width: calc(210mm * 0.42);
+    max-width: 100%;
+    
+    > * {
+      transform: scale(0.42);
+      transform-origin: top center;
+      margin-bottom: -58%;
+    }
+  }
+}
+
+// Breakpoint 430px - iPhone 14 Pro Max
+@media (max-width: 430px) {
+  .cv-preview {
+    padding: 6px;
+  }
+
+  .cv-actions {
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+
+    ::ng-deep button {
+      width: 100% !important;
+      min-width: unset !important;
+      max-width: unset !important;
+      height: 44px !important;
+      padding: 0 16px !important;
+      font-size: 13px !important;
+    }
+  }
+
+  #cv-template {
+    width: calc(210mm * 0.40);
+    max-width: 100%;
+    
+    > * {
+      transform: scale(0.40);
+      transform-origin: top center;
+      margin-bottom: -60%;
+    }
+  }
+}
+
+// Breakpoint 390px - iPhone 12/13/14
+@media (max-width: 390px) {
+  .cv-preview {
+    padding: 4px;
+  }
+
+  .cv-actions {
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 8px;
+
+    ::ng-deep button {
+      width: 100% !important;
+      min-width: unset !important;
+      max-width: unset !important;
+      height: 42px !important;
+      padding: 0 16px !important;
+      font-size: 13px !important;
+    }
+  }
+
+  #cv-template {
+    width: calc(210mm * 0.36);
+    max-width: 100%;
+    
+    > * {
+      transform: scale(0.36);
+      transform-origin: top center;
+      margin-bottom: -64%;
+    }
+  }
+}
+
+// Breakpoint 360px - Small Android
+@media (max-width: 360px) {
+  .cv-preview {
+    padding: 2px;
+  }
+
+  .cv-actions {
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 6px;
+
+    ::ng-deep button {
+      width: 100% !important;
+      min-width: unset !important;
+      max-width: unset !important;
+      height: 40px !important;
+      padding: 0 16px !important;
+      font-size: 12px !important;
+    }
+  }
+
+  #cv-template {
+    width: calc(210mm * 0.33);
+    max-width: 100%;
+    
+    > * {
+      transform: scale(0.33);
+      transform-origin: top center;
+      margin-bottom: -67%;
+    }
+  }
+}
