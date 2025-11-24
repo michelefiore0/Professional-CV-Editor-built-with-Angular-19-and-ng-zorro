@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { CVTemplate, CVData } from '../models/cv-template.model';
+import { CVTemplate, CVData, CVPreferences } from '../models/cv-template.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,8 @@ export class CVTemplateService {
       description: 'Design moderno con gradient e foto profilo',
       preview: 'assets/previews/modern-1.png',
       category: 'modern',
-      hasPhoto: true
+      hasPhoto: true,
+      experienceCapacity: 'any'
     },
     {
       id: 'classic-1',
@@ -21,7 +22,8 @@ export class CVTemplateService {
       description: 'Layout tradizionale a due colonne con foto',
       preview: 'assets/previews/classic-1.png',
       category: 'classic',
-      hasPhoto: true
+      hasPhoto: true,
+      experienceCapacity: 'any'
     },
     {
       id: 'creative-1',
@@ -30,7 +32,8 @@ export class CVTemplateService {
       preview: 'assets/previews/creative-1.png',
       category: 'creative',
       hasPhoto: true,
-      disabled: true
+      disabled: true,
+      experienceCapacity: 'any'
     },
     {
       id: 'minimal-1',
@@ -38,7 +41,8 @@ export class CVTemplateService {
       description: 'Essenziale e pulito, solo testo',
       preview: 'assets/previews/minimal-1.png',
       category: 'minimal',
-      hasPhoto: false
+      hasPhoto: false,
+      experienceCapacity: 'any'
     },
     {
       id: 'professional-1',
@@ -46,7 +50,8 @@ export class CVTemplateService {
       description: 'Design corporate con foto e layout strutturato',
       preview: 'assets/previews/professional-1.png',
       category: 'modern',
-      hasPhoto: true
+      hasPhoto: true,
+      experienceCapacity: 'any'
     },
     {
       id: 'tech-1',
@@ -54,7 +59,8 @@ export class CVTemplateService {
       description: 'Template per sviluppatori senza foto',
       preview: 'assets/previews/tech-1.png',
       category: 'modern',
-      hasPhoto: false
+      hasPhoto: false,
+      experienceCapacity: 'any'
     },
     {
       id: 'executive-1',
@@ -62,7 +68,8 @@ export class CVTemplateService {
       description: 'Per posizioni dirigenziali con foto',
       preview: 'assets/previews/executive-1.png',
       category: 'classic',
-      hasPhoto: true
+      hasPhoto: true,
+      experienceCapacity: 'any'
     },
     {
       id: 'simple-1',
@@ -70,7 +77,8 @@ export class CVTemplateService {
       description: 'Layout lineare senza foto, molto pulito',
       preview: 'assets/previews/simple-1.png',
       category: 'minimal',
-      hasPhoto: false
+      hasPhoto: false,
+      experienceCapacity: 'any'
     }
   ];
 
@@ -147,11 +155,29 @@ export class CVTemplateService {
     return of(this.templates);
   }
 
+  getFilteredTemplates(preferences: CVPreferences): Observable<CVTemplate[]> {
+    const filtered = this.templates.filter(template => {
+      if (template.disabled) return false;
+      if (template.hasPhoto !== preferences.hasPhoto) return false;
+      
+      const expCount = preferences.experienceCount;
+      const capacity = template.experienceCapacity;
+      
+      if (capacity === 'any') return true;
+      if (capacity === expCount) return true;
+      if (expCount === '4+' && (capacity === '1-3' || capacity === '4+')) return true;
+      
+      return false;
+    });
+    
+    return of(filtered);
+  }
+
   getTemplateById(id: string): Observable<CVTemplate | undefined> {
     return of(this.templates.find(t => t.id === id));
   }
 
-  getSampleData(): Observable<CVData> {
-    return of(this.sampleData);
+  getSampleData(userType: 'student' | 'professional' = 'professional'): Observable<CVData> {
+    return of({ ...this.sampleData, userType });
   }
 }

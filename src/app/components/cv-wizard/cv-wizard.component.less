@@ -1,0 +1,193 @@
+.cv-wizard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.wizard-card {
+  max-width: 700px;
+  width: 100%;
+  
+  h2 {
+    text-align: center;
+    font-size: 2em;
+    margin: 0 0 8px 0;
+    color: #262626;
+  }
+  
+  .subtitle {
+    text-align: center;
+    color: #8c8c8c;
+    margin-bottom: 32px;
+    font-size: 1.1em;
+  }
+}
+
+.wizard-section {
+  margin-bottom: 32px;
+  
+  h3 {
+    font-size: 1.2em;
+    margin-bottom: 16px;
+    color: #262626;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+    [nz-icon] {
+      font-size: 1.3em;
+      color: #1890ff;
+    }
+  }
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.radio-option {
+  display: flex !important;
+  align-items: center;
+  padding: 16px;
+  border: 2px solid #d9d9d9;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: white;
+  width: 100%;
+  box-sizing: border-box;
+  
+  &:hover {
+    border-color: #1890ff;
+    background: #f0f5ff;
+  }
+  
+  ::ng-deep .ant-radio-checked + * {
+    border-color: #1890ff;
+    background: #e6f7ff;
+  }
+}
+
+.option-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  margin-left: 12px;
+  
+  .option-icon {
+    font-size: 2em;
+    color: #1890ff;
+  }
+  
+  strong {
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 4px;
+    color: #262626;
+  }
+  
+  p {
+    margin: 0;
+    color: #8c8c8c;
+    font-size: 0.9em;
+  }
+}
+
+.wizard-actions {
+  margin-top: 40px;
+  
+  button {
+    height: 50px;
+    font-size: 1.1em;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .cv-wizard {
+    padding: 16px;
+  }
+  
+  .wizard-card {
+    h2 {
+      font-size: 1.6em;
+    }
+    
+    .subtitle {
+      font-size: 1em;
+      margin-bottom: 24px;
+    }
+  }
+  
+  .wizard-section {
+    margin-bottom: 24px;
+    
+    h3 {
+      font-size: 1.1em;
+    }
+  }
+  
+  .option-content {
+    gap: 12px;
+    
+    .option-icon {
+      font-size: 1.6em;
+    }
+    
+    strong {
+      font-size: 1em;
+    }
+    
+    p {
+      font-size: 0.85em;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .cv-wizard {
+    padding: 12px;
+  }
+  
+  .wizard-card {
+    h2 {
+      font-size: 1.4em;
+    }
+    
+    .subtitle {
+      font-size: 0.95em;
+    }
+  }
+  
+  .radio-option {
+    padding: 12px;
+  }
+  
+  .option-content {
+    gap: 10px;
+    
+    .option-icon {
+      font-size: 1.4em;
+    }
+    
+    strong {
+      font-size: 0.95em;
+    }
+    
+    p {
+      font-size: 0.8em;
+    }
+  }
+  
+  .wizard-actions button {
+    height: 48px;
+    font-size: 1em;
+  }
+}

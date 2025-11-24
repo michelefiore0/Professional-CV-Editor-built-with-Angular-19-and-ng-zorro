@@ -11,4 +11,8 @@ import { CVData } from '../../models/cv-template.model';
 })
 export class SimpleTemplateComponent {
   @Input() cvData!: CVData;
+
+  get experienceSectionTitle(): string {
+    return this.cvData.userType === 'student' ? 'Esperienze Formative' : 'Esperienza Lavorativa';
+  }
 }

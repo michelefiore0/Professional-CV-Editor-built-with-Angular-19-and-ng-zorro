@@ -1,4 +1,5 @@
 export interface CVData {
+  userType?: 'student' | 'professional';
   personalInfo: {
     name: string;
     title: string;
@@ -40,4 +41,11 @@ export interface CVTemplate {
   category: 'modern' | 'classic' | 'creative' | 'minimal';
   hasPhoto: boolean;
   disabled?: boolean;
+  experienceCapacity: '0' | '1-3' | '4+' | 'any';
+}
+
+export interface CVPreferences {
+  userType: 'student' | 'professional';
+  hasPhoto: boolean;
+  experienceCount: '0' | '1-3' | '4+';
 }

@@ -42,6 +42,18 @@ export class CVEditorComponent implements OnInit {
   @Output() dataChanged = new EventEmitter<CVData>();
   @Output() backToPreview = new EventEmitter<void>();
 
+  get experienceSectionTitle(): string {
+    return this.cvData?.userType === 'student' ? 'Esperienze Formative' : 'Esperienza Lavorativa';
+  }
+
+  get experienceCompanyLabel(): string {
+    return this.cvData?.userType === 'student' ? 'Organizzazione/Ente' : 'Azienda';
+  }
+
+  get experiencePositionLabel(): string {
+    return this.cvData?.userType === 'student' ? 'Ruolo/Attività' : 'Posizione';
+  }
+
   cvForm!: FormGroup;
   currentStep = 0;
   

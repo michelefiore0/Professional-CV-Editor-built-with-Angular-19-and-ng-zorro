@@ -65,9 +65,11 @@
         <nz-form-item>
           <nz-form-label nzRequired>Città</nz-form-label>
           <nz-form-control nzErrorTip="La città è obbligatoria">
-            <nz-select formControlName="location" nzPlaceHolder="Seleziona città" nzShowSearch>
-              <nz-option *ngFor="let city of allCities" [nzValue]="city" [nzLabel]="city"></nz-option>
-            </nz-select>
+            <input nz-input formControlName="location" placeholder="Seleziona o scrivi città" 
+              [nzAutocomplete]="cityAuto" />
+            <nz-autocomplete #cityAuto>
+              <nz-auto-option *ngFor="let city of allCities" [nzValue]="city">{{city}}</nz-auto-option>
+            </nz-autocomplete>
           </nz-form-control>
         </nz-form-item>
 
@@ -109,8 +111,8 @@
     <!-- Step 1: Esperienza -->
     <div class="step-content" *ngIf="currentStep === 1">
       <div class="step-header">
-        <h3><span nz-icon nzType="solution"></span> Esperienza Lavorativa</h3>
-        <p>Aggiungi le tue esperienze professionali</p>
+        <h3><span nz-icon nzType="solution"></span> {{ experienceSectionTitle }}</h3>
+        <p>{{ cvData?.userType === 'student' ? 'Aggiungi le tue esperienze formative (stage, tirocini, progetti)' : 'Aggiungi le tue esperienze professionali' }}</p>
       </div>
 
       <div formArrayName="experience" class="form-section">
@@ -123,16 +125,16 @@
           </div>
 
           <nz-form-item>
-            <nz-form-label nzRequired>Azienda</nz-form-label>
-            <nz-form-control nzErrorTip="L'azienda è obbligatoria">
-              <input nz-input formControlName="company" placeholder="Nome Azienda" />
+            <nz-form-label nzRequired>{{ experienceCompanyLabel }}</nz-form-label>
+            <nz-form-control [nzErrorTip]="experienceCompanyLabel + ' è obbligatorio/a'">
+              <input nz-input formControlName="company" [placeholder]="cvData?.userType === 'student' ? 'Nome Organizzazione' : 'Nome Azienda'" />
             </nz-form-control>
           </nz-form-item>
 
           <nz-form-item>
-            <nz-form-label nzRequired>Posizione</nz-form-label>
-            <nz-form-control nzErrorTip="La posizione è obbligatoria">
-              <input nz-input formControlName="position" placeholder="Ruolo" />
+            <nz-form-label nzRequired>{{ experiencePositionLabel }}</nz-form-label>
+            <nz-form-control [nzErrorTip]="experiencePositionLabel + ' è obbligatorio/a'">
+              <input nz-input formControlName="position" [placeholder]="cvData?.userType === 'student' ? 'Stage, Tirocinio, Progetto' : 'Ruolo'" />
             </nz-form-control>
           </nz-form-item>
 
@@ -186,14 +188,16 @@
           <nz-form-item>
             <nz-form-label nzRequired>Istituzione</nz-form-label>
             <nz-form-control nzErrorTip="L'istituzione è obbligatoria">
-              <nz-select formControlName="institution" nzPlaceHolder="Seleziona" nzShowSearch>
-                <nz-option-group nzLabel="Università">
-                  <nz-option *ngFor="let uni of allUniversities" [nzValue]="uni" [nzLabel]="uni"></nz-option>
-                </nz-option-group>
-                <nz-option-group nzLabel="Scuole Superiori">
-                  <nz-option *ngFor="let school of allHighSchools" [nzValue]="school" [nzLabel]="school"></nz-option>
-                </nz-option-group>
-              </nz-select>
+              <input nz-input formControlName="institution" placeholder="Seleziona o scrivi (es. ITS, università estera)" 
+                [nzAutocomplete]="institutionAuto" />
+              <nz-autocomplete #institutionAuto>
+                <nz-auto-optgroup nzLabel="Università">
+                  <nz-auto-option *ngFor="let uni of allUniversities" [nzValue]="uni">{{uni}}</nz-auto-option>
+                </nz-auto-optgroup>
+                <nz-auto-optgroup nzLabel="Scuole Superiori">
+                  <nz-auto-option *ngFor="let school of allHighSchools" [nzValue]="school">{{school}}</nz-auto-option>
+                </nz-auto-optgroup>
+              </nz-autocomplete>
             </nz-form-control>
           </nz-form-item>
 
@@ -207,9 +211,11 @@
           <nz-form-item>
             <nz-form-label nzRequired>Città</nz-form-label>
             <nz-form-control nzErrorTip="La città è obbligatoria">
-              <nz-select formControlName="city" nzPlaceHolder="Seleziona città" nzShowSearch>
-                <nz-option *ngFor="let city of allCities" [nzValue]="city" [nzLabel]="city"></nz-option>
-              </nz-select>
+              <input nz-input formControlName="city" placeholder="Seleziona o scrivi città" 
+                [nzAutocomplete]="eduCityAuto" />
+              <nz-autocomplete #eduCityAuto>
+                <nz-auto-option *ngFor="let city of allCities" [nzValue]="city">{{city}}</nz-auto-option>
+              </nz-autocomplete>
             </nz-form-control>
           </nz-form-item>
 
@@ -289,9 +295,11 @@
           <nz-form-item>
             <nz-form-label nzRequired>Lingua</nz-form-label>
             <nz-form-control nzErrorTip="La lingua è obbligatoria">
-              <nz-select formControlName="language" nzPlaceHolder="Seleziona lingua" nzShowSearch>
-                <nz-option *ngFor="let l of languageOptions" [nzValue]="l" [nzLabel]="l"></nz-option>
-              </nz-select>
+              <input nz-input formControlName="language" placeholder="Seleziona o scrivi lingua" 
+                [nzAutocomplete]="langAuto" />
+              <nz-autocomplete #langAuto>
+                <nz-auto-option *ngFor="let l of languageOptions" [nzValue]="l">{{l}}</nz-auto-option>
+              </nz-autocomplete>
             </nz-form-control>
           </nz-form-item>
 

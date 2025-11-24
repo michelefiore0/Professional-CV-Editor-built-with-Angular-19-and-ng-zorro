@@ -39,7 +39,7 @@
 
     <div class="right-column">
       <section class="experience">
-        <h3>Esperienza Lavorativa</h3>
+        <h3>{{ experienceSectionTitle }}</h3>
         <div class="experience-item" *ngFor="let exp of cvData.experience">
           <div class="period">{{ exp.startDate }} - {{ exp.endDate }}</div>
           <h4>{{ exp.position }}</h4>

@@ -1,6 +1,18 @@
 <div class="template-selector">
-  <h2>Scegli un Template</h2>
-  <p>Clicca su un template per vedere l'anteprima completa</p>
+  <div class="selector-header">
+    <button nz-button *ngIf="preferences" (click)="goBackToWizard()" class="back-button">
+      <span nz-icon nzType="arrow-left"></span>
+      Modifica Preferenze
+    </button>
+    <div class="header-text">
+      <h2>Scegli un Template</h2>
+      <p *ngIf="!preferences">Clicca su un template per vedere l'anteprima completa</p>
+      <p *ngIf="preferences" class="filtered-message">
+        <span nz-icon nzType="filter" nzTheme="fill"></span>
+        Mostrando {{ templates.length }} template{{ templates.length !== 1 ? 's' : '' }} adatti alle tue esigenze
+      </p>
+    </div>
+  </div>
   
   <div nz-row [nzGutter]="[16, 16]">
     <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="8" [nzLg]="6" *ngFor="let template of templates">
@@ -13,22 +25,15 @@
         (click)="!template.disabled && previewTemplate(template)">
         
         <ng-template #coverTemplate>
-          <div class="template-preview">
-            <div class="preview-placeholder">
-              <div class="preview-header" [class]="'preview-' + template.category">
-                <div class="preview-photo" *ngIf="template.hasPhoto"></div>
-                <div class="preview-text">
-                  <div class="preview-name"></div>
-                  <div class="preview-title"></div>
-                </div>
-              </div>
-              <div class="preview-content">
-                <div class="preview-section" *ngFor="let i of [1,2,3]">
-                  <div class="preview-line"></div>
-                  <div class="preview-line short"></div>
-                </div>
-              </div>
-            </div>
+          <div class="template-preview-mini">
+            <app-modern-template *ngIf="template.id === 'modern-1' && sampleData" [cvData]="sampleData"></app-modern-template>
+            <app-classic-template *ngIf="template.id === 'classic-1' && sampleData" [cvData]="sampleData"></app-classic-template>
+            <app-creative-template *ngIf="template.id === 'creative-1' && sampleData" [cvData]="sampleData"></app-creative-template>
+            <app-minimal-template *ngIf="template.id === 'minimal-1' && sampleData" [cvData]="sampleData"></app-minimal-template>
+            <app-professional-template *ngIf="template.id === 'professional-1' && sampleData" [cvData]="sampleData"></app-professional-template>
+            <app-tech-template *ngIf="template.id === 'tech-1' && sampleData" [cvData]="sampleData"></app-tech-template>
+            <app-executive-template *ngIf="template.id === 'executive-1' && sampleData" [cvData]="sampleData"></app-executive-template>
+            <app-simple-template *ngIf="template.id === 'simple-1' && sampleData" [cvData]="sampleData"></app-simple-template>
           </div>
         </ng-template>
         

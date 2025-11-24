@@ -1,0 +1,109 @@
+<div class="cv-wizard">
+  <nz-card class="wizard-card">
+    <h2>Crea il tuo CV Perfetto</h2>
+    <p class="subtitle">Rispondi a queste domande per trovare il template ideale</p>
+    
+    <form [formGroup]="wizardForm" (ngSubmit)="onSubmit()">
+      
+      <!-- Tipo Utente -->
+      <div class="wizard-section">
+        <h3>
+          <span nz-icon nzType="user"></span>
+          Qual è la tua situazione?
+        </h3>
+        <nz-radio-group formControlName="userType" class="radio-group">
+          <label nz-radio nzValue="student" class="radio-option">
+            <div class="option-content">
+              <span nz-icon nzType="read" class="option-icon"></span>
+              <div>
+                <strong>Studente</strong>
+                <p>Esperienze formative e stage</p>
+              </div>
+            </div>
+          </label>
+          <label nz-radio nzValue="professional" class="radio-option">
+            <div class="option-content">
+              <span nz-icon nzType="solution" class="option-icon"></span>
+              <div>
+                <strong>Professionista</strong>
+                <p>Esperienza lavorativa</p>
+              </div>
+            </div>
+          </label>
+        </nz-radio-group>
+      </div>
+
+      <!-- Foto -->
+      <div class="wizard-section">
+        <h3>
+          <span nz-icon nzType="camera"></span>
+          Vuoi includere una foto?
+        </h3>
+        <nz-radio-group formControlName="hasPhoto" class="radio-group">
+          <label nz-radio [nzValue]="true" class="radio-option">
+            <div class="option-content">
+              <span nz-icon nzType="check-circle" class="option-icon"></span>
+              <div>
+                <strong>Sì, con foto</strong>
+                <p>Template con foto profilo</p>
+              </div>
+            </div>
+          </label>
+          <label nz-radio [nzValue]="false" class="radio-option">
+            <div class="option-content">
+              <span nz-icon nzType="close-circle" class="option-icon"></span>
+              <div>
+                <strong>No, senza foto</strong>
+                <p>Template solo testo</p>
+              </div>
+            </div>
+          </label>
+        </nz-radio-group>
+      </div>
+
+      <!-- Esperienza -->
+      <div class="wizard-section">
+        <h3>
+          <span nz-icon nzType="project"></span>
+          Quante esperienze vuoi inserire?
+        </h3>
+        <nz-radio-group formControlName="experienceCount" class="radio-group">
+          <label nz-radio nzValue="0" class="radio-option">
+            <div class="option-content">
+              <span nz-icon nzType="file-text" class="option-icon"></span>
+              <div>
+                <strong>Nessuna</strong>
+                <p>Solo formazione e competenze</p>
+              </div>
+            </div>
+          </label>
+          <label nz-radio nzValue="1-3" class="radio-option">
+            <div class="option-content">
+              <span nz-icon nzType="profile" class="option-icon"></span>
+              <div>
+                <strong>1-3 esperienze</strong>
+                <p>Template compatto</p>
+              </div>
+            </div>
+          </label>
+          <label nz-radio nzValue="4+" class="radio-option">
+            <div class="option-content">
+              <span nz-icon nzType="container" class="option-icon"></span>
+              <div>
+                <strong>4 o più</strong>
+                <p>Template espanso</p>
+              </div>
+            </div>
+          </label>
+        </nz-radio-group>
+      </div>
+
+      <div class="wizard-actions">
+        <button nz-button nzType="primary" nzSize="large" nzBlock [disabled]="!wizardForm.valid">
+          <span nz-icon nzType="arrow-right"></span>
+          Mostra Template Consigliati
+        </button>
+      </div>
+    </form>
+  </nz-card>
+</div>

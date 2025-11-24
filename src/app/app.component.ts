@@ -7,6 +7,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { TemplateSelectorComponent } from './components/template-selector/template-selector.component';
+import { CVWizardComponent } from './components/cv-wizard/cv-wizard.component';
 import { ModernTemplateComponent } from './components/cv-templates/modern-template.component';
 import { ClassicTemplateComponent } from './components/cv-templates/classic-template.component';
 import { CreativeTemplateComponent } from './components/cv-templates/creative-template.component';
@@ -32,6 +33,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
     NzButtonModule,
     NzCardModule,
     NzMessageModule,
+    CVWizardComponent,
     TemplateSelectorComponent,
     ModernTemplateComponent,
     ClassicTemplateComponent,
@@ -52,10 +54,12 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 })
 export class AppComponent {
   title = 'cv-editor-angular';
+  showWizard = false;
   showTemplateSelector = false;
   selectedTemplate: CVTemplate | null = null;
   cvData: CVData | null = null;
   showEditor = false;
+  userPreferences: any = null;
 
   constructor(
     private templateService: CVTemplateService,
@@ -64,6 +68,12 @@ export class AppComponent {
   ) {}
 
   createNewCV() {
+    this.showWizard = true;
+  }
+
+  onPreferencesSelected(preferences: any) {
+    this.userPreferences = preferences;
+    this.showWizard = false;
     this.showTemplateSelector = true;
   }
 
@@ -71,8 +81,9 @@ export class AppComponent {
     this.selectedTemplate = template;
     this.showTemplateSelector = false;
     
-    // Carica dati di esempio
-    this.templateService.getSampleData().subscribe(data => {
+    // Carica dati di esempio con userType
+    const userType = this.userPreferences?.userType || 'professional';
+    this.templateService.getSampleData(userType).subscribe(data => {
       this.cvData = data;
     });
   }
@@ -82,6 +93,11 @@ export class AppComponent {
     this.cvData = null;
     this.showTemplateSelector = true;
     this.showEditor = false;
+  }
+
+  backToWizard() {
+    this.showTemplateSelector = false;
+    this.showWizard = true;
   }
 
   editCV() {

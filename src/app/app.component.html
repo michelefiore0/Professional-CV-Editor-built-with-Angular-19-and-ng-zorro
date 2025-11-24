@@ -18,7 +18,7 @@
   </nz-header>
   
   <nz-content class="cv-editor-container">
-    <nz-card nzTitle="Benvenuto nel tuo CV Editor" class="welcome-card" *ngIf="!showTemplateSelector && !selectedTemplate">
+    <nz-card nzTitle="Benvenuto nel tuo CV Editor" class="welcome-card" *ngIf="!showWizard && !showTemplateSelector && !selectedTemplate">
       <p>Inizia a creare il tuo curriculum vitae personalizzato!</p>
       <button nz-button nzType="primary" nzSize="large" (click)="createNewCV()">
         <span nz-icon nzType="plus"></span>
@@ -26,9 +26,16 @@
       </button>
     </nz-card>
     
+    <app-cv-wizard
+      *ngIf="showWizard"
+      (preferencesSelected)="onPreferencesSelected($event)">
+    </app-cv-wizard>
+    
     <app-template-selector 
       *ngIf="showTemplateSelector" 
-      (templateSelected)="onTemplateSelected($event)">
+      [preferences]="userPreferences"
+      (templateSelected)="onTemplateSelected($event)"
+      (backToWizard)="backToWizard()">
     </app-template-selector>
     
     <div *ngIf="selectedTemplate && cvData && !showEditor" class="cv-preview">
