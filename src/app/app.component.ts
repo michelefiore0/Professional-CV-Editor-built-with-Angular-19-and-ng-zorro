@@ -60,6 +60,7 @@ export class AppComponent {
   cvData: CVData | null = null;
   showEditor = false;
   userPreferences: any = null;
+  menuVisible = false;
 
   constructor(
     private templateService: CVTemplateService,

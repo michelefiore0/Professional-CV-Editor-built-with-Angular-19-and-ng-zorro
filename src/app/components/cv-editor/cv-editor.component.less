@@ -1,11 +1,11 @@
 .cv-editor {
   max-width: 900px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 16px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 200px);
+  background: #fafafa;
 }
 
 // Header
@@ -13,26 +13,25 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   gap: 12px;
   background: white;
-  padding: 16px 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
 
   h2 {
     margin: 0;
-    font-size: 22px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 600;
     flex: 1;
     text-align: center;
-    color: #1a1a1a;
-    letter-spacing: -0.5px;
+    color: #262626;
   }
 
   .back-btn, .save-btn {
     flex-shrink: 0;
-    height: 40px;
+    height: 36px;
     font-weight: 500;
   }
 
@@ -43,21 +42,21 @@
 
 // Steps
 .steps-container {
-  margin-bottom: 36px;
+  margin-bottom: 20px;
   background: white;
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
   
   .wizard-steps {
     ::ng-deep {
       .ant-steps-item-title {
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 500;
       }
       
       .ant-steps-item-process .ant-steps-item-icon {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: #667eea;
         border-color: #667eea;
       }
       
@@ -75,7 +74,7 @@
 // Form
 .cv-form {
   flex: 1;
-  margin-bottom: 80px;
+  margin-bottom: 70px;
 }
 
 .step-content {
@@ -88,50 +87,48 @@
 }
 
 .step-header {
-  margin-bottom: 28px;
-  padding: 20px 24px;
+  margin-bottom: 20px;
+  padding: 16px 20px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
 
   h3 {
-    margin: 0 0 6px 0;
-    font-size: 20px;
-    font-weight: 700;
+    margin: 0 0 4px 0;
+    font-size: 18px;
+    font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     color: white;
-    letter-spacing: -0.3px;
     
     span[nz-icon] {
-      font-size: 24px;
+      font-size: 20px;
     }
   }
 
   p {
     margin: 0;
     color: rgba(255, 255, 255, 0.9);
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 13px;
   }
 }
 
 .form-section {
   background: white;
-  padding: 28px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
   
   nz-form-item {
-    margin-bottom: 24px;
+    margin-bottom: 18px;
     display: block;
   }
 
   nz-form-label {
     font-weight: 600;
-    font-size: 14px;
-    margin-bottom: 8px;
+    font-size: 13px;
+    margin-bottom: 6px;
     display: block;
     width: 100%;
     color: #262626;
@@ -147,26 +144,26 @@
   }
 
   input, textarea {
-    font-size: 15px;
-    padding: 11px 14px;
-    border-radius: 8px;
-    border: 1.5px solid #e0e0e0;
-    transition: all 0.3s;
+    font-size: 14px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #d9d9d9;
+    transition: all 0.2s;
     
     &:hover {
-      border-color: #b8b8b8;
+      border-color: #40a9ff;
     }
     
     &:focus {
       border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
     }
   }
 
   textarea {
     resize: vertical;
-    min-height: 110px;
-    line-height: 1.6;
+    min-height: 90px;
+    line-height: 1.5;
   }
 
   ::ng-deep {
@@ -180,63 +177,51 @@
     }
     
     .ant-select-selector {
-      border-radius: 8px !important;
-      border: 1.5px solid #e0e0e0 !important;
-      padding: 6px 14px !important;
-      min-height: 44px !important;
-      transition: all 0.3s !important;
+      border-radius: 6px !important;
+      border: 1px solid #d9d9d9 !important;
+      padding: 5px 12px !important;
+      min-height: 40px !important;
+      transition: all 0.2s !important;
       
       &:hover {
-        border-color: #b8b8b8 !important;
+        border-color: #40a9ff !important;
       }
     }
     
     .ant-select-focused .ant-select-selector {
       border-color: #667eea !important;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+      box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1) !important;
     }
   }
 }
 
 // Card Items
 .card-item {
-  background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
-  border: 1.5px solid #e3e6ea;
-  border-radius: 10px;
-  padding: 22px;
-  margin-bottom: 18px;
+  background: #fafafa;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 14px;
   width: 100%;
-  transition: all 0.3s;
+  transition: all 0.2s;
   
   &:hover {
     border-color: #667eea;
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.08);
-    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
   }
 
   .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 18px;
-    padding-bottom: 14px;
-    border-bottom: 2px solid #e8ecf0;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e8e8e8;
 
     .card-title {
-      font-weight: 700;
-      font-size: 16px;
-      color: #1a1a1a;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      
-      &::before {
-        content: '';
-        width: 4px;
-        height: 18px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border-radius: 2px;
-      }
+      font-weight: 600;
+      font-size: 15px;
+      color: #262626;
     }
   }
 }
@@ -245,36 +230,32 @@
 .date-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 12px;
 }
 
 // Skills Grid
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
-  margin-bottom: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
 // Add Button
 .add-btn {
-  height: 48px;
-  border: 2px dashed #d0d5dd;
+  height: 44px;
+  border: 2px dashed #d9d9d9;
   background: white;
   color: #667eea;
   font-weight: 600;
-  font-size: 15px;
-  border-radius: 10px;
-  transition: all 0.3s;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  font-size: 14px;
+  border-radius: 8px;
+  transition: all 0.2s;
 
   &:hover {
     border-color: #667eea;
-    border-style: solid;
     color: white;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
-    transform: translateY(-1px);
+    background: #667eea;
   }
 }
 
@@ -282,13 +263,13 @@
 .photo-upload {
   .photo-preview {
     position: relative;
-    width: 140px;
-    height: 140px;
+    width: 120px;
+    height: 120px;
     margin: 0 auto;
-    border-radius: 12px;
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 2px solid white;
 
     img {
       width: 100%;
@@ -298,45 +279,42 @@
 
     .remove-photo {
       position: absolute;
-      top: 8px;
-      right: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      top: 6px;
+      right: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
   }
 
   .photo-dropzone {
-    border: 2px dashed #d0d5dd;
-    border-radius: 12px;
-    padding: 32px 24px;
+    border: 2px dashed #d9d9d9;
+    border-radius: 8px;
+    padding: 24px 20px;
     text-align: center;
-    background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
-    transition: all 0.3s;
+    background: #fafafa;
+    transition: all 0.2s;
     cursor: pointer;
 
     &:hover {
       border-color: #667eea;
-      border-style: solid;
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+      background: rgba(102, 126, 234, 0.05);
     }
 
     .upload-icon {
-      font-size: 42px;
+      font-size: 36px;
       color: #667eea;
       display: block;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     p {
-      margin: 10px 0;
-      color: #4a5568;
-      font-size: 14px;
+      margin: 8px 0;
+      color: #595959;
+      font-size: 13px;
       font-weight: 500;
     }
 
     .upload-btns {
-      margin-top: 16px;
+      margin-top: 12px;
       
       button {
         font-weight: 600;
@@ -352,66 +330,60 @@
   left: 0;
   right: 0;
   background: white;
-  border-top: 1px solid #e8ecf0;
-  padding: 18px 20px;
+  border-top: 1px solid #e8e8e8;
+  padding: 12px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
-  box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
+  gap: 16px;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.06);
   z-index: 100;
-  backdrop-filter: blur(10px);
 
   button {
     flex: 1;
-    max-width: 150px;
-    height: 46px;
+    max-width: 140px;
+    height: 40px;
     font-weight: 600;
-    font-size: 15px;
-    border-radius: 10px;
-    transition: all 0.3s;
+    font-size: 14px;
+    border-radius: 8px;
+    transition: all 0.2s;
     
     &[nz-button][nzType="primary"] {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: #667eea;
       border: none;
-      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
       
       &:hover:not(:disabled) {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+        background: #5568d3;
       }
       
       &:disabled {
         background: #d9d9d9;
-        box-shadow: none;
       }
     }
   }
 
   .step-indicator {
-    font-weight: 700;
-    font-size: 16px;
+    font-weight: 600;
+    font-size: 15px;
     color: #667eea;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-    padding: 8px 20px;
-    border-radius: 20px;
-    letter-spacing: 0.5px;
+    background: rgba(102, 126, 234, 0.1);
+    padding: 6px 16px;
+    border-radius: 16px;
   }
 }
 
 // Responsive - Tablet
 @media (max-width: 768px) {
   .cv-editor {
-    padding: 16px;
+    padding: 12px;
   }
 
   .editor-header {
-    margin-bottom: 20px;
-    padding: 12px 16px;
-    border-radius: 10px;
+    margin-bottom: 16px;
+    padding: 10px 12px;
 
     h2 {
-      font-size: 18px;
+      font-size: 17px;
     }
 
     .back-btn, .save-btn {
@@ -420,16 +392,14 @@
       }
       
       .btn-icon {
-        font-size: 22px !important;
-        line-height: 1;
+        font-size: 20px !important;
       }
     }
   }
 
   .steps-container {
-    margin-bottom: 24px;
-    padding: 18px;
-    border-radius: 10px;
+    margin-bottom: 16px;
+    padding: 12px;
 
     ::ng-deep .ant-steps-item-title {
       display: none !important;
@@ -442,7 +412,7 @@
     }
 
     p {
-      font-size: 13px;
+      font-size: 12px;
     }
   }
 
@@ -454,84 +424,83 @@
 // Responsive - Mobile (400px min)
 @media (max-width: 480px) {
   .cv-editor {
-    padding: 12px;
+    padding: 10px;
     max-width: 100%;
   }
 
   .editor-header {
-    margin-bottom: 16px;
-    padding: 10px 12px;
-    border-radius: 8px;
+    margin-bottom: 12px;
+    padding: 8px 10px;
     gap: 8px;
 
     h2 {
-      font-size: 16px;
-      letter-spacing: -0.3px;
+      font-size: 15px;
     }
 
     .back-btn, .save-btn {
-      height: 36px;
-      padding: 0 12px;
+      height: 32px;
+      padding: 0 10px;
       
       .btn-icon {
-        font-size: 20px;
+        font-size: 18px;
       }
     }
   }
 
   .steps-container {
-    margin-bottom: 20px;
-    padding: 14px 12px;
-    border-radius: 8px;
+    margin-bottom: 12px;
+    padding: 10px;
     
     ::ng-deep {
       .ant-steps-item-icon {
-        width: 28px !important;
-        height: 28px !important;
-        line-height: 28px !important;
-        font-size: 14px !important;
+        width: 26px !important;
+        height: 26px !important;
+        line-height: 26px !important;
+        font-size: 13px !important;
       }
     }
   }
 
   .step-header {
-    margin-bottom: 20px;
-    padding-bottom: 12px;
+    margin-bottom: 16px;
+    padding: 12px 16px;
 
     h3 {
-      font-size: 15px;
+      font-size: 14px;
     }
 
     p {
-      font-size: 12px;
+      font-size: 11px;
     }
   }
 
   .form-section {
+    padding: 16px;
+    
     nz-form-item {
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     nz-form-label {
-      font-size: 13px;
+      font-size: 12px;
     }
 
     input, textarea {
       font-size: 16px;
-      padding: 12px;
+      padding: 10px;
     }
   }
 
   .card-item {
-    padding: 16px;
-    margin-bottom: 12px;
+    padding: 12px;
+    margin-bottom: 10px;
 
     .card-header {
-      margin-bottom: 12px;
-      padding-bottom: 10px;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
 
       .card-title {
-        font-size: 14px;
+        font-size: 13px;
       }
     }
   }
@@ -542,8 +511,8 @@
   }
 
   .add-btn {
-    height: 48px;
-    font-size: 15px;
+    height: 44px;
+    font-size: 14px;
   }
 
   .photo-upload {
@@ -553,29 +522,29 @@
     }
 
     .photo-dropzone {
-      padding: 20px 12px;
+      padding: 16px 10px;
 
       .upload-icon {
-        font-size: 32px;
+        font-size: 28px;
       }
 
       p {
-        font-size: 13px;
+        font-size: 12px;
       }
     }
   }
 
   .step-navigation {
-    padding: 12px;
-    gap: 12px;
+    padding: 10px;
+    gap: 10px;
 
     button {
-      font-size: 15px;
-      height: 44px;
+      font-size: 14px;
+      height: 40px;
     }
 
     .step-indicator {
-      font-size: 14px;
+      font-size: 13px;
     }
   }
 }
@@ -583,16 +552,16 @@
 // Extra small (400px exact)
 @media (max-width: 400px) {
   .cv-editor {
-    padding: 10px;
+    padding: 8px;
   }
 
   .step-navigation {
-    padding: 10px 8px;
+    padding: 8px;
 
     button {
-      font-size: 14px;
-      height: 42px;
-      padding: 0 12px;
+      font-size: 13px;
+      height: 38px;
+      padding: 0 10px;
     }
   }
 }

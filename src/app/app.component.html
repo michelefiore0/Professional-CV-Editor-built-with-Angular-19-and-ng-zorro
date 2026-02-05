@@ -1,20 +1,25 @@
 <nz-layout class="layout">
-  <nz-header>
-    <div class="logo">CV Editor</div>
-    <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
-      <li nz-menu-item>
-        <span nz-icon nzType="file-text"></span>
-        Nuovo CV
-      </li>
-      <li nz-menu-item>
-        <span nz-icon nzType="folder-open"></span>
-        Carica CV
-      </li>
-      <li nz-menu-item>
-        <span nz-icon nzType="download"></span>
-        Esporta
-      </li>
-    </ul>
+  <nz-header class="app-header">
+    <div class="header-content">
+      <div class="logo">
+        <span nz-icon nzType="file-text" nzTheme="outline"></span>
+        <span class="logo-text">CV Editor</span>
+      </div>
+      <button nz-button nzType="text" class="menu-toggle" (click)="menuVisible = !menuVisible">
+        <span nz-icon [nzType]="menuVisible ? 'close' : 'menu'"></span>
+      </button>
+    </div>
+    <div class="mobile-menu" [class.visible]="menuVisible">
+      <button nz-button nzBlock (click)="menuVisible = false">
+        <span nz-icon nzType="file-text"></span> Nuovo CV
+      </button>
+      <button nz-button nzBlock (click)="menuVisible = false">
+        <span nz-icon nzType="folder-open"></span> Carica CV
+      </button>
+      <button nz-button nzBlock (click)="menuVisible = false">
+        <span nz-icon nzType="download"></span> Esporta
+      </button>
+    </div>
   </nz-header>
   
   <nz-content class="cv-editor-container">
@@ -75,7 +80,7 @@
     </app-cv-editor>
   </nz-content>
   
-  <nz-footer style="text-align: center;">
-    CV Editor ©2024 - Creato con Angular 19 e ng-zorro
+  <nz-footer class="app-footer">
+    <span>CV Editor ©2024</span>
   </nz-footer>
 </nz-layout>
