@@ -315,9 +315,25 @@
 
     .upload-btns {
       margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
       
       button {
         font-weight: 600;
+        flex: 1;
+        max-width: 120px;
+      }
+      
+      .camera-btn {
+        background: white;
+        border-color: #667eea;
+        color: #667eea;
+        
+        &:hover {
+          background: #667eea;
+          color: white;
+        }
       }
     }
   }

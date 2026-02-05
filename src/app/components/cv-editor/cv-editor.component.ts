@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormArray, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -54,6 +54,12 @@ export class CVEditorComponent implements OnInit {
     return this.cvData?.userType === 'student' ? 'Ruolo/Attività' : 'Posizione';
   }
 
+  @ViewChild('videoElement') videoElement!: ElementRef<HTMLVideoElement>;
+  @ViewChild('canvasElement') canvasElement!: ElementRef<HTMLCanvasElement>;
+  
+  cameraStream: MediaStream | null = null;
+  isCameraActive = false;
+  
   cvForm!: FormGroup;
   currentStep = 0;
   
@@ -111,10 +117,94 @@ export class CVEditorComponent implements OnInit {
     });
   }
 
+  async openCamera() {
+    try {
+      if (this.isCameraActive) {
+        this.capturePhoto();
+        return;
+      }
+
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      const constraints = {
+        video: {
+          facingMode: isMobile ? 'user' : 'user',
+          width: { ideal: 1280 },
+          height: { ideal: 1280 }
+        }
+      };
+
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
+      
+      this.cameraStream = stream;
+      this.isCameraActive = true;
+      
+      const video = this.videoElement.nativeElement;
+      video.srcObject = stream;
+      video.style.display = 'block';
+      
+      this.message.info('Clicca di nuovo su "Scatta" per catturare la foto');
+    } catch (error) {
+      this.message.error('Impossibile accedere alla fotocamera');
+      console.error(error);
+    }
+  }
+
+  capturePhoto() {
+    const video = this.videoElement.nativeElement;
+    const canvas = this.canvasElement.nativeElement;
+    
+    const size = 800;
+    canvas.width = size;
+    canvas.height = size;
+    
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      const videoWidth = video.videoWidth;
+      const videoHeight = video.videoHeight;
+      const aspectRatio = videoWidth / videoHeight;
+      
+      let sx = 0, sy = 0, sWidth = videoWidth, sHeight = videoHeight;
+      
+      if (aspectRatio > 1) {
+        sWidth = videoHeight;
+        sx = (videoWidth - sWidth) / 2;
+      } else {
+        sHeight = videoWidth;
+        sy = (videoHeight - sHeight) / 2;
+      }
+      
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(video, sx, sy, sWidth, sHeight, 0, 0, size, size);
+      
+      const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
+      this.cvForm.get('personalInfo.photo')?.setValue(dataUrl);
+      
+      this.stopCamera();
+      this.message.success('Foto catturata con successo!');
+    }
+  }
+
+  stopCamera() {
+    if (this.cameraStream) {
+      this.cameraStream.getTracks().forEach(track => track.stop());
+      this.cameraStream = null;
+    }
+    
+    const video = this.videoElement.nativeElement;
+    video.style.display = 'none';
+    video.srcObject = null;
+    this.isCameraActive = false;
+  }
+
+  ngOnDestroy() {
+    this.stopCamera();
+  }
+
   onPhotoUpload(event: any) {
     const file = event.target.files[0];
     if (file) {
-      this.photoUploadService.resizeImage(file, 400, 400).subscribe({
+      this.photoUploadService.resizeImage(file, 800, 800, 0.95).subscribe({
         next: (dataUrl) => {
           this.cvForm.get('personalInfo.photo')?.setValue(dataUrl);
           this.message.success('Foto caricata con successo!');
@@ -131,7 +221,7 @@ export class CVEditorComponent implements OnInit {
     const files = event.dataTransfer?.files;
     if (files && files.length > 0) {
       const file = files[0];
-      this.photoUploadService.resizeImage(file, 400, 400).subscribe({
+      this.photoUploadService.resizeImage(file, 800, 800, 0.95).subscribe({
         next: (dataUrl) => {
           this.cvForm.get('personalInfo.photo')?.setValue(dataUrl);
           this.message.success('Foto caricata con successo!');

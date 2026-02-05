@@ -92,7 +92,12 @@
                   <button nz-button nzType="primary" nzSize="small" (click)="photoInput.click()">
                     <span nz-icon nzType="upload"></span> Carica
                   </button>
+                  <button nz-button nzSize="small" (click)="openCamera()" class="camera-btn">
+                    <span nz-icon nzType="camera"></span> Scatta
+                  </button>
                 </div>
+                <video #videoElement autoplay playsinline style="display:none; width: 100%; max-width: 400px; margin: 12px auto 0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);"></video>
+                <canvas #canvasElement style="display:none;"></canvas>
               </div>
             </div>
           </nz-form-control>
