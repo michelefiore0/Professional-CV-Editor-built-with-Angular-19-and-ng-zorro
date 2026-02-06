@@ -16,6 +16,7 @@ import { ProfessionalTemplateComponent } from './components/cv-templates/profess
 import { TechTemplateComponent } from './components/cv-templates/tech-template.component';
 import { ExecutiveTemplateComponent } from './components/cv-templates/executive-template.component';
 import { SimpleTemplateComponent } from './components/cv-templates/simple-template.component';
+import { BusinessCleanTemplateComponent } from './components/cv-templates/business-clean-template.component';
 import { CVEditorComponent } from './components/cv-editor/cv-editor.component';
 import { CVTemplate, CVData } from './models/cv-template.model';
 import { CVTemplateService } from './services/cv-template.service';
@@ -43,13 +44,15 @@ import { NzMessageService } from 'ng-zorro-antd/message';
     TechTemplateComponent,
     ExecutiveTemplateComponent,
     SimpleTemplateComponent,
+    BusinessCleanTemplateComponent,
     CVEditorComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: [
     './app.component.less', 
     './components/cv-preview-styles.less',
-    './components/cv-templates-responsive.less'
+    './components/cv-templates-responsive.less',
+    './components/cv-multipage-styles.less'
   ]
 })
 export class AppComponent {
@@ -82,7 +85,6 @@ export class AppComponent {
     this.selectedTemplate = template;
     this.showTemplateSelector = false;
     
-    // Carica dati di esempio con userType
     const userType = this.userPreferences?.userType || 'professional';
     this.templateService.getSampleData(userType).subscribe(data => {
       this.cvData = data;

@@ -1,0 +1,31 @@
+// Multi-page CV styles - automatic page break
+.cv-template {
+  // Prevent page breaks inside important elements
+  .no-page-break,
+  .experience-item,
+  .education-item,
+  .item {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  
+  // Allow natural page breaks
+  section {
+    page-break-inside: auto;
+  }
+}
+
+// Print styles for automatic multi-page
+@media print {
+  .cv-template {
+    page-break-after: auto;
+    
+    .no-page-break,
+    .experience-item,
+    .education-item,
+    .item {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+  }
+}

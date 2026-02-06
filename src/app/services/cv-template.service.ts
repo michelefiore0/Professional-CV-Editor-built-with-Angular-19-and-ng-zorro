@@ -14,7 +14,7 @@ export class CVTemplateService {
       preview: 'assets/previews/modern-1.png',
       category: 'modern',
       hasPhoto: true,
-      experienceCapacity: 'any'
+      experienceCapacity: '1-3'
     },
     {
       id: 'classic-1',
@@ -23,7 +23,7 @@ export class CVTemplateService {
       preview: 'assets/previews/classic-1.png',
       category: 'classic',
       hasPhoto: true,
-      experienceCapacity: 'any'
+      experienceCapacity: '1-3'
     },
     {
       id: 'creative-1',
@@ -48,6 +48,15 @@ export class CVTemplateService {
       id: 'professional-1',
       name: 'Professionale Corporate',
       description: 'Design corporate con foto e layout strutturato',
+      preview: 'assets/previews/professional-1.png',
+      category: 'modern',
+      hasPhoto: true,
+      experienceCapacity: 'any'
+    },
+    {
+      id: 'professional-2',
+      name: 'Business Clean',
+      description: 'Design corporate pulito senza foto',
       preview: 'assets/previews/professional-1.png',
       category: 'modern',
       hasPhoto: false,
@@ -165,7 +174,7 @@ export class CVTemplateService {
       
       if (capacity === 'any') return true;
       if (capacity === expCount) return true;
-      if (expCount === '4+' && (capacity === '1-3' || capacity === '4+')) return true;
+      if (expCount === '4+' && capacity === '4+') return true;
       
       return false;
     });

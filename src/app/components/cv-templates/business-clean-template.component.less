@@ -1,0 +1,155 @@
+.business-clean-template {
+  width: 100%;
+  max-width: 900px;
+  min-height: 100vh;
+  background: white;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  padding: 15mm 18mm;
+  box-sizing: border-box;
+  font-size: 12px;
+  overflow: visible;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #2c5aa0;
+}
+
+.personal-info {
+  h1 {
+    font-size: 2.5em;
+    color: #2c5aa0;
+    margin: 0 0 6px 0;
+    font-weight: bold;
+    letter-spacing: -0.5px;
+  }
+
+  h2 {
+    font-size: 1.4em;
+    color: #666;
+    margin: 0 0 12px 0;
+    font-weight: normal;
+  }
+}
+
+.contact-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.95em;
+  color: #555;
+  
+  .separator {
+    color: #ccc;
+  }
+}
+
+.content {
+  display: flex;
+  gap: 25px;
+}
+
+.left-column {
+  flex: 2;
+}
+
+.right-column {
+  flex: 1;
+  background: #f8f9fa;
+  padding: 18px;
+  border-radius: 8px;
+  align-self: flex-start;
+}
+
+section {
+  margin-bottom: 18px;
+}
+
+h3 {
+  color: #2c5aa0;
+  font-size: 1.2em;
+  margin-bottom: 12px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #2c5aa0;
+  font-weight: bold;
+}
+
+.experience-item,
+.education-item {
+  margin-bottom: 14px;
+}
+
+.experience-item h4,
+.education-item h4 {
+  color: #333;
+  font-size: 1.05em;
+  margin-bottom: 4px;
+  line-height: 1.3;
+  font-weight: bold;
+}
+
+.company {
+  color: #666;
+  font-style: italic;
+  margin-bottom: 6px;
+  font-size: 0.9em;
+}
+
+.experience-item p,
+.education-item p {
+  margin: 0;
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skill-tag {
+  background: #2c5aa0;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 14px;
+  font-size: 0.85em;
+  font-weight: 500;
+}
+
+.language-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.95em;
+  padding: 4px 0;
+  border-bottom: 1px solid #e0e0e0;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.language {
+  font-weight: bold;
+  color: #333;
+}
+
+.level {
+  color: #666;
+}
+
+@media print {
+  .business-clean-template {
+    width: 210mm;
+    height: 297mm;
+    max-width: 210mm;
+    min-height: 297mm;
+    overflow: hidden;
+    box-shadow: none;
+    page-break-after: always;
+  }
+}

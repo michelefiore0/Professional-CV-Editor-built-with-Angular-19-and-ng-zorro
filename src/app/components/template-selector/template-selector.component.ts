@@ -16,6 +16,7 @@ import { ProfessionalTemplateComponent } from '../cv-templates/professional-temp
 import { TechTemplateComponent } from '../cv-templates/tech-template.component';
 import { ExecutiveTemplateComponent } from '../cv-templates/executive-template.component';
 import { SimpleTemplateComponent } from '../cv-templates/simple-template.component';
+import { BusinessCleanTemplateComponent } from '../cv-templates/business-clean-template.component';
 
 @Component({
   selector: 'app-template-selector',
@@ -35,7 +36,8 @@ import { SimpleTemplateComponent } from '../cv-templates/simple-template.compone
     ProfessionalTemplateComponent,
     TechTemplateComponent,
     ExecutiveTemplateComponent,
-    SimpleTemplateComponent
+    SimpleTemplateComponent,
+    BusinessCleanTemplateComponent
   ],
   templateUrl: './template-selector.component.html',
   styleUrls: ['./template-selector.component.less']
@@ -56,6 +58,7 @@ export class TemplateSelectorComponent implements OnInit {
     if (this.preferences) {
       this.templateService.getFilteredTemplates(this.preferences).subscribe(templates => {
         this.templates = templates;
+        console.log('Filtered templates:', templates.map(t => t.name));
       });
       this.templateService.getSampleData(this.preferences.userType).subscribe(data => {
         this.sampleData = data;
