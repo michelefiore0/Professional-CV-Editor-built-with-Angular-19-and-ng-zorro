@@ -50,7 +50,7 @@ export class CVTemplateService {
       description: 'Design corporate con foto e layout strutturato',
       preview: 'assets/previews/professional-1.png',
       category: 'modern',
-      hasPhoto: true,
+      hasPhoto: false,
       experienceCapacity: 'any'
     },
     {
@@ -68,7 +68,7 @@ export class CVTemplateService {
       description: 'Per posizioni dirigenziali con foto',
       preview: 'assets/previews/executive-1.png',
       category: 'classic',
-      hasPhoto: true,
+      hasPhoto: false,
       experienceCapacity: 'any'
     },
     {

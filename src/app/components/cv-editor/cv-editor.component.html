@@ -89,10 +89,11 @@
                 <p>Trascina foto o clicca</p>
                 <div class="upload-btns">
                   <input type="file" #photoInput accept="image/*" (change)="onPhotoUpload($event)" hidden>
-                  <button nz-button nzType="primary" nzSize="small" (click)="photoInput.click()">
+                  <input type="file" #mobileCamera accept="image/*" capture="environment" (change)="onPhotoUpload($event)" hidden>
+                  <button nz-button nzType="primary" nzSize="small" (click)="isMobileDevice() ? mobileCamera.click() : photoInput.click()">
                     <span nz-icon nzType="upload"></span> Carica
                   </button>
-                  <button nz-button nzSize="small" (click)="openCamera()" class="camera-btn">
+                  <button nz-button nzSize="small" (click)="openCamera()" class="camera-btn" *ngIf="!isMobileDevice()">
                     <span nz-icon nzType="camera"></span> Scatta
                   </button>
                 </div>

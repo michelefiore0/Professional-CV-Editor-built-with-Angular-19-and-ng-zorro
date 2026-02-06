@@ -117,6 +117,10 @@ export class CVEditorComponent implements OnInit {
     });
   }
 
+  isMobileDevice(): boolean {
+    return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  }
+
   async openCamera() {
     try {
       if (this.isCameraActive) {
